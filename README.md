@@ -1,6 +1,6 @@
 # Croudia
 
-A Mechanize-based Ruby scraper for [Croudia](https://croudia.com)
+A Mechanize-based scraper for [Croudia](https://croudia.com)
 
 ## Installation
 
