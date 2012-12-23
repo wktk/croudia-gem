@@ -66,4 +66,27 @@ describe Croudia::Scraper::Voices do
       end
     end
   end
+
+  describe '#update' do
+    context 'when not logged in' do
+      it 'raises an error' do
+        expect{ Croudia::Scraper.new.update('Hi') }.to raise_error
+      end
+    end
+
+    context 'when logged in' do
+      before do
+        stub_get('/voices/written').to_return(:body => fixture('voices_written'), :headers => {:content_type => 'text/html'})
+        stub_post('/voices/write').to_return(:headers => {:content_type => 'text/html'})
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+      end
+
+      it 'posts to the correct resource' do
+        @croudia.update('Hello')
+        a_get('/voices/written').should have_been_made
+        a_post('/voices/write').should have_been_made
+      end
+    end
+  end
 end

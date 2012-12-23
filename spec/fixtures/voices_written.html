@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Croudia</title>
+    <meta content="authenticity_token" name="csrf-param">
+    <meta content="dummy_csrf_token" name="csrf-token">
+  </head>
+  <body>
+    <form action="/voices/write" class="new_voice" enctype="multipart/form-data" id="new_voice" method="post">
+      <input name="utf8" type="hidden" value="&#x2713;">
+      <input name="authenticity_token" type="hidden" value="dummy_csrf_token">
+      <textarea cols="40" id="message1" maxlength="372" name="voice[tweet]" rows="20"></textarea>
+      <input id="image_file_file" name="image_file[file]" type="file">
+      <input id="voice_flag" name="voice_flag" type="hidden" value="1">
+      <input id="voice_token" name="voice_token" type="hidden" value="dummy_voice_token">
+      <input id="tweet_submit" name="commit" type="submit" value="ささやく">
+    </form>
+  </body>
+</html>
