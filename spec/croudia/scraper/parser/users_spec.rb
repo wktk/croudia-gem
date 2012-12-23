@@ -154,14 +154,12 @@ describe Croudia::Scraper::Parser::Users do
   end
 
   describe '#user_list' do
-    before do
-      stub_get('/follows/following/wktk').to_return(:body => fixture('following_wktk'), :headers => {:content_type => 'text/html'})
-      stub_get('/follows/follower/wktk').to_return(:body => fixture('follower_wktk'), :headers => {:content_type => 'text/html'})
-      @following = Croudia.following('wktk')
-      @followers = Croudia.followers('wktk')
-    end
-
     context 'when following list provided' do
+      before do
+        stub_get('/follows/following/wktk').to_return(:body => fixture('following_wktk'), :headers => {:content_type => 'text/html'})
+        @following = Croudia::Scraper.new.following('wktk')
+      end
+
       it 'gets all users in the page' do
         @following.size.should eq 3
       end
@@ -208,6 +206,11 @@ describe Croudia::Scraper::Parser::Users do
     end
 
     context 'when follower list provided' do
+      before do
+        stub_get('/follows/follower/wktk').to_return(:body => fixture('follower_wktk'), :headers => {:content_type => 'text/html'})
+        @followers = Croudia::Scraper.new.follower('wktk')
+      end
+
       it 'gets all users in the page' do
         @followers.size.should eq 3
       end
@@ -250,6 +253,39 @@ describe Croudia::Scraper::Parser::Users do
         it 'leaves following nil' do
           @followers[2].following.should be_false
         end
+      end
+    end
+
+    context 'when follow_request list provided' do
+      before do
+        stub_get('/follows/follow_request').to_return(:body => fixture('follow_request'), :headers => {:content_type => 'text/html'})
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+        @requests = @croudia.follow_request
+      end
+
+      it 'gets all users in the page' do
+        @requests.size.should eq 2
+      end
+
+      it 'gets username' do
+        @requests[0].username.should eq 'wktk'
+      end
+
+      it 'gets nickname' do
+        @requests[0].nickname.should eq 'wktk!'
+      end
+
+      it 'gets avatar url' do
+        @requests[0].avatar.should eq Croudia.endpoint + '/avatar1'
+      end
+
+      it 'gets description' do
+        @requests[0].description.should eq "Description 1\nHello"
+      end
+
+      it 'trims description' do
+        @requests[0].description.should_not match /^\s|\s$/
       end
     end
   end

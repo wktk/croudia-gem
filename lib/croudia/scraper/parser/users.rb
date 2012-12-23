@@ -31,15 +31,21 @@ module Croudia
         end
 
         def user_list(page)
-          user_nodes = page.parser.xpath('//div[@data-role="content"]/ul[@data-role="listview"]/li[child::a]')
+          user_nodes = page.parser.xpath('//div[@data-role="content"]/ul[@data-role="listview"]/li[not(@data-role="list-divider")]')
           users = []
-          user_nodes.map do |user_node|
+          user_nodes.each do |user_node|
             attrs = {
-              :username => user_node.css('a').first.attribute('href').value.sub(%r{^/}, ''),
               :nickname => user_node.css('.bord').first.content,
               :avatar => "#{page.uri.scheme}://#{page.uri.host}" + user_node.css('img').first.attribute('src').value,
               :self_introduction => user_node.css('.fontg').first.content.strip,
             }
+            if (links = user_node.css('a')).size.nonzero?
+              # For following/followers page
+              attrs[:username] = links.first.attribute('href').value.sub(%r{^/}, '')
+            elsif (forms = user_node.xpath('//form[not(contains(@action,"/follows/"))]')).size.nonzero?
+              # For follow_request page
+              attrs[:username] = forms.first.attribute('action').value.sub(%r{^/}, '')
+            end
             if (following = user_node.css('.font1')).size.nonzero?
               attrs[:following] = /#e/i !~ following.first.attribute('style').value
             end

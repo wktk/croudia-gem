@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Croudia（クローディア）</title>
+    <meta content="authenticity_token" name="csrf-param">
+    <meta content="dummy_csrf_token" name="csrf-token">
+  </head>
+  <body>
+    <div data-role="page" data-dom-cache="false" class="no-cache" data-url="/follows/follow_request" data-id="hedder1" id="follow_request">
+      <div data-role="content">
+        <ul data-role="listview" data-split-icon="gear" id="follower_list" data-theme="c" data-dividertheme="i">
+          <li data-role="list-divider" class="bar">@testuser宛てのフォローリクエスト</li>
+          <li>
+            <img src="/avatar1" alt="wktk!" class="ui-li-icon avatar">
+            <p>
+              <span class="bord">wktk!</span>
+              <span class="gray">@wktk</span>
+            </p>
+            <!--
+            フォロー:10<br>
+            フォロワー：10
+            <a href="/follows/menu" data-rel="dialog" data-transition="slideup"></a>
+            -->
+            <p class="fontg" style="font-size:12px;">
+Description 1
+Hello
+              <form action="/follows/approve_dialog/wktk" method="get">
+                <button type="submit" data-theme="b">承認する</button>
+              </form>
+              <form action="/follows/refusal_dialog/wktk" method="get">
+                <button type="submit" data-theme="test">拒否する</button>
+              </form>
+              <form action="/wktk" method="get">
+                <button type="submit" data-theme="c">プロフィールを確認</button>
+              </form>
+            </p>
+          </li>
+          <li>
+            <img src="/avatar2" alt="testuser1" class="ui-li-icon avatar">
+            <p>
+              <span class="bord">testuser1</span>
+              <span class="gray">@testuser1</span>
+            </p>
+            <!--
+            フォロー:10<br>
+            フォロワー：10
+            <a href="/follows/menu" data-rel="dialog" data-transition="slideup"></a>
+            -->
+            <p class="fontg" style="font-size:12px;">
+This is a test description.
+Hi, hi!
+              <form action="/follows/approve_dialog/testuser1" method="get">
+                <button type="submit" data-theme="b">承認する</button>
+              </form>
+              <form action="/follows/refusal_dialog/testuser1" method="get">
+                <button type="submit" data-theme="test">拒否する</button>
+              </form>
+              <form action="/testuser1" method="get">
+                <button type="submit" data-theme="c">プロフィールを確認</button>
+              </form>
+            </p>
+          </li>
+        </ul>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>
