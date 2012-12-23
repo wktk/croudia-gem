@@ -30,7 +30,7 @@ module Croudia
           Croudia::User.new(attrs)
         end
 
-        def user_list(page, klass=Croudia::User)
+        def user_list(page)
           user_nodes = page.parser.xpath('//div[@data-role="content"]/ul[@data-role="listview"]/li[child::a]')
           users = []
           user_nodes.map do |user_node|
