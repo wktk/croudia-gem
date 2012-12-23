@@ -3,7 +3,7 @@ module Croudia
     module Friendships
       def follow(username)
         require_login
-        post('/follows/target_follow', 
+        post('/follows/target_follow',
           :target_user_name => username,
           :follow_action => 'enable',
         )
@@ -11,7 +11,7 @@ module Croudia
 
       def unfollow(username)
         require_login
-        post('/follows/target_follow', 
+        post('/follows/target_follow',
           :target_user_name => username,
           :follow_action => 'diable', # Yes, it is!
         )

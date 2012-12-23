@@ -32,7 +32,7 @@ describe Croudia::Scraper::Friendships do
 
     describe '#follow' do
       it 'should raise error' do
-        expect{ @croudia.follow('wktk') }.to raise_error 
+        expect{ @croudia.follow('wktk') }.to raise_error
       end
     end
 
