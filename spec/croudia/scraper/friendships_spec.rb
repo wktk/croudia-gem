@@ -59,30 +59,30 @@ describe Croudia::Scraper::Friendships do
   context 'when not logged in' do
     before do
       @croudia = Croudia::Scraper.new
-      @croudia.instance_variable_set('@logged_in', true)
+      @croudia.instance_variable_set('@logged_in', false)
     end
 
     describe '#follow' do
       it 'raises an error' do
-        expect{ @croudia.follow('wktk') }.to raise_error
+        expect{ @croudia.follow('wktk') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
     describe '#unfollow' do
       it 'raises an error' do
-        expect{ @croudia.follow('wktk') }.to raise_error
+        expect{ @croudia.follow('wktk') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
     describe '#approve' do
       it 'raises an error' do
-        expect{ @croudia.approve('wktk') }.to raise_error
+        expect{ @croudia.approve('wktk') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
     describe '#refusal' do
       it 'raises an error' do
-        expect{ @croudia.refusal('wktk') }.to raise_error
+        expect{ @croudia.refusal('wktk') }.to raise_error Croudia::NotLoggedInError
       end
     end
   end

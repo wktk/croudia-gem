@@ -1,3 +1,5 @@
+require 'croudia/error'
+
 module Croudia
   class Scraper
     module Login
@@ -33,7 +35,7 @@ module Croudia
       alias logged_out logged_out?
 
       def require_login
-        raise 'Not logged in' if logged_out?
+        raise NotLoggedInError, 'Not logged in' if logged_out?
       end
     end
   end

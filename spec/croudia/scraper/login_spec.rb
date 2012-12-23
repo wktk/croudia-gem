@@ -59,7 +59,7 @@ describe Croudia::Scraper::Login do
       it 'raises an error' do
         @croudia = Croudia::Scraper.new
         @croudia.instance_variable_set('@logged_in', false)
-        expect{ @croudia.logout }.to raise_error
+        expect{ @croudia.logout }.to raise_error Croudia::NotLoggedInError
       end
     end
 
@@ -120,7 +120,9 @@ describe Croudia::Scraper::Login do
   describe '#require_login' do
     context 'when logged out' do
       it 'raises an errror' do
-        expect{ Croudia::Scraper.new.require_login }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.require_login }.to raise_error Croudia::NotLoggedInError
       end
     end
 

@@ -37,7 +37,9 @@ describe Croudia::Scraper::Users do
 
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.current_user }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.current_user }.to raise_error Croudia::NotLoggedInError
       end
     end
   end
@@ -67,7 +69,9 @@ describe Croudia::Scraper::Users do
       end
 
       it 'raises an error when not logged in' do
-        expect{ Croudia::Scraper.new.user }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.user }.to raise_error Croudia::NotLoggedInError
       end
     end
   end

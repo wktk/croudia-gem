@@ -1,3 +1,4 @@
+require 'croudia/error'
 require 'croudia/scraper/friendships'
 require 'croudia/scraper/login'
 require 'croudia/scraper/parser'

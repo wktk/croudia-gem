@@ -31,7 +31,9 @@ describe Croudia::Scraper::Voices do
 
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.timeline }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.timeline }.to raise_error Croudia::NotLoggedInError
       end
     end
   end
@@ -62,7 +64,9 @@ describe Croudia::Scraper::Voices do
 
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.reply_list }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.reply_list }.to raise_error Croudia::NotLoggedInError
       end
     end
   end
@@ -70,7 +74,9 @@ describe Croudia::Scraper::Voices do
   describe '#update' do
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.update('Hi') }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.update('Hi') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
@@ -93,7 +99,9 @@ describe Croudia::Scraper::Voices do
   describe '#favorite' do
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.favorite('1') }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.favorite('1') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
@@ -111,7 +119,9 @@ describe Croudia::Scraper::Voices do
   describe '#unfavorite' do
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.unfavorite('1') }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.unfavorite('1') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
@@ -129,7 +139,9 @@ describe Croudia::Scraper::Voices do
   describe '#spread' do
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.spread('1') }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.spread('1') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
@@ -147,7 +159,9 @@ describe Croudia::Scraper::Voices do
   describe '#unspread' do
     context 'when not logged in' do
       it 'raises an error' do
-        expect{ Croudia::Scraper.new.unspread('1') }.to raise_error
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', false)
+        expect{ @croudia.unspread('1') }.to raise_error Croudia::NotLoggedInError
       end
     end
 
