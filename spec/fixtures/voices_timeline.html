@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Croudia（クローディア）</title>
+    <meta content="authenticity_token" name="csrf-param">
+    <meta content="dummy_csrf_token" name="csrf-token">
+  </head>
+  <body>
+    <div data-role="page" data-dom-cache="false" class="no-cache" data-url="/voices/timeline" data-id="hedder1" id="timeline">
+      <div data-role="content">
+        <ul data-role="listview" id="tweet" stream_flg="true" data-theme="c" data-dividertheme="i">
+          <li data-role="list-divider" class="bar" id="title_bar">ホーム</li>
+          <li id="1001">
+            <a href="/voices/show/1001" class="test_a_margin" data-transition="slide">
+              <p>
+                <span class="bord">nickname 1</span>
+                <span class="gray"> @username1</span>
+              </p>
+              <p class="voice_desc">text 1</p>
+              <p class="time" data-time="1356250231" style="color:gray;">
+                <span class="diff_time_view">3分前</span>
+                <span style="color:#396;">SP950</span>
+                <span style="color:#daa520;">★100 </span>
+              </p>
+            </a>
+            <span class="test_span">
+              <a href="/username1" data-transition="slide">
+                <img src="/avatar1" alt="username1" class="avatar">
+              </a>
+            </span>
+          </li>
+          <li id="1000">
+            <a href="/voices/show/1000" class="test_a_margin" data-transition="slide">
+              <p>
+                <span class="bord">nickname 2</span>
+                <span class="gray"> @username2</span>
+              </p>
+              <p class="voice_desc">text 1</p>
+              <p class="time" data-time="1356250231" style="color:gray;">
+                <span class="diff_time_view">3分前</span>
+                <span style="color:#396;">SP0</span>
+                <span style="color:#daa520;">★0 </span>
+              </p>
+            </a>
+            <span class="test_span">
+              <a href="/username2" data-transition="slide">
+                <img src="/avatar2" alt="username1" class="avatar">
+              </a>
+            </span>
+          </li>
+        </ul>
+        <br>
+        <br>
+        <input type="button" value="もっと見る" id="timeline_more">
+        <br>
+      </div>
+    </div>
+  </body>
+</html>
