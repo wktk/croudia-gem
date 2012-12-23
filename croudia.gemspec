@@ -4,8 +4,8 @@ require File.expand_path('../lib/croudia/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ['wktk']
   gem.email         = ['wktk@wktk.in']
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = 'A Mechanize-based Ruby scraper for Croudia'
+  gem.summary       = gem.description
   gem.homepage      = 'https://github.com/wktk/croudia-gem'
 
   gem.files         = `git ls-files`.split($\)

@@ -1,6 +1,6 @@
 # Croudia
 
-TODO: Write a gem description
+A Mechanize-based Ruby scraper for [Croudia](https://croudia.com)
 
 ## Installation
 
