@@ -89,4 +89,76 @@ describe Croudia::Scraper::Voices do
       end
     end
   end
+
+  describe '#favorite' do
+    context 'when not logged in' do
+      it 'raises an error' do
+        expect{ Croudia::Scraper.new.favorite('1') }.to raise_error
+      end
+    end
+
+    context 'when logged in' do
+      it 'posts to the correct resource' do
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+        stub_post('/favorites').to_return(:headers => {:content_type => 'text/html'})
+        @croudia.favorite('1')
+        a_post('/favorites').with(:body => /favorites_action=enable/).should have_been_made
+      end
+    end
+  end
+
+  describe '#unfavorite' do
+    context 'when not logged in' do
+      it 'raises an error' do
+        expect{ Croudia::Scraper.new.unfavorite('1') }.to raise_error
+      end
+    end
+
+    context 'when logged in' do
+      it 'posts to the correct resource' do
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+        stub_post('/favorites').to_return(:headers => {:content_type => 'text/html'})
+        @croudia.unfavorite('1')
+        a_post('/favorites').with(:body => /favorites_action=disable/).should have_been_made
+      end
+    end
+  end
+
+  describe '#spread' do
+    context 'when not logged in' do
+      it 'raises an error' do
+        expect{ Croudia::Scraper.new.spread('1') }.to raise_error
+      end
+    end
+
+    context 'when logged in' do
+      it 'posts to the correct resource' do
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+        stub_post('/spreads/spread_voice').to_return(:headers => {:content_type => 'text/html'})
+        @croudia.spread('1')
+        a_post('/spreads/spread_voice').with(:body => /favorites_action=enable/).should have_been_made
+      end
+    end
+  end
+
+  describe '#unspread' do
+    context 'when not logged in' do
+      it 'raises an error' do
+        expect{ Croudia::Scraper.new.unspread('1') }.to raise_error
+      end
+    end
+
+    context 'when logged in' do
+      it 'posts to the correct resource' do
+        @croudia = Croudia::Scraper.new
+        @croudia.instance_variable_set('@logged_in', true)
+        stub_post('/spreads/spread_voice').to_return(:headers => {:content_type => 'text/html'})
+        @croudia.unspread('1')
+        a_post('/spreads/spread_voice').with(:body => /favorites_action=disable/).should have_been_made
+      end
+    end
+  end
 end

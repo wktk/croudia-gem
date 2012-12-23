@@ -22,6 +22,38 @@ module Croudia
         result = form.submit
         raise 'Update failed' if result.body.include? 'error_popup'
       end
+
+      def favorite(voice_id)
+        require_login
+        post('/favorites',
+          :favorites_action => 'enable',
+          :voice_id => voice_id,
+        )
+      end
+
+      def unfavorite(voice_id)
+        require_login
+        post('/favorites',
+          :favorites_action => 'disable',
+          :voice_id => voice_id,
+        )
+      end
+
+      def spread(voice_id)
+        require_login
+        post('/spreads/spread_voice',
+          :favorites_action => 'enable',
+          :voice_id => voice_id,
+        )
+      end
+
+      def unspread(voice_id)
+        require_login
+        post('/spreads/spread_voice',
+          :favorites_action => 'disable',
+          :voice_id => voice_id,
+        )
+      end
     end
   end
 end
