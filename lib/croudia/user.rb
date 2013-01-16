@@ -31,13 +31,13 @@ module Croudia
 
     def initialize(*args)
       super
-      @id = @username
-      @spreadia = @spreadia.to_i if @spreadia
-      @favodia = @favodia.to_i if @favodia
+      @id = username
+      @spreadia = spreadia.to_i if spreadia
+      @favodia = favodia.to_i if favodia
     end
 
     def to_s
-      @username
+      username
     end
   end
 end

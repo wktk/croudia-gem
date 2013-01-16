@@ -4,7 +4,7 @@ describe Croudia::Voice do
   describe '#to_s' do
     it 'returns "@username: text"' do
       user = Croudia::User.new(:username => 'wktk')
-      Croudia::Voice.new(:user => user, :desc => 'Hello!').to_s.should eq '@wktk: Hello!'
+      Croudia::Voice.new(:user => user, :voice_desc => 'Hello!').to_s.should eq '@wktk: Hello!'
     end
   end
 

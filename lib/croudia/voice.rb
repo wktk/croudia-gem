@@ -11,7 +11,7 @@ module Croudia
     alias favorite_count favorited_count
 
     def to_s
-      "@#{@user.username}: #{@desc}"
+      "@#{user.username}: #{voice_desc}"
     end
 
     def to_i
