@@ -18,7 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'croudia'
+
+# Create a new instance
+croudia = Croudia.new('username', 'password')
+
+# Same as above
+croudia = Croudia.new
+croudia.login('username', 'password')
+
+# Update status
+croudia.update('Hello!')
+
+# Follow @wktk
+croudia.follow('wktk')
+
+# Get the home timeline
+croudia.timeline
+```
 
 ## Contributing
 
