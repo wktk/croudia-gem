@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.version       = Croudia::VERSION
 
   gem.add_dependency 'mechanize', '~> 2.5.1'
+  gem.add_development_dependency 'rake', '~> 0.9.2.2'
+  gem.add_development_dependency 'rdoc', '~> 3.11'
   gem.add_development_dependency 'rspec', '~> 2.10.1'
   gem.add_development_dependency 'webmock', '~> 1.8.7'
 end
