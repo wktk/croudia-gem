@@ -1,43 +1,30 @@
 require 'helper'
 
 describe Croudia::User do
-  describe '#to_s' do
-    it 'returns username' do
-      Croudia::User.new(:username => 'wktk').to_s.should eq 'wktk'
-    end
-  end
-
-  describe '#initialize' do
-    it 'sets @username as @id' do
-      Croudia::User.new(:username => 'wktk').id.should eq 'wktk'
-    end
-
-    it 'converts spreadia into an Integer' do
-      Croudia::User.new(:spreadia => '10').spreadia.should eq 10
-    end
-
-    it 'converts favodia into an Integer' do
-      Croudia::User.new(:spreadia => '11').spreadia.should eq 11
-    end
-  end
-
   describe '#==' do
-    it 'returns true if usernames are the same' do
-      user1 = Croudia::User.new(:username => 'wktk', :name => 'wktk')
-      user2 = Croudia::User.new(:username => 'wktk', :name => 'wktk!!')
-      (user1 == user2).should be_true
+    it 'returns true when objects IDs are the same' do
+      user = Croudia::User.new(id: 1, name: 'hoge')
+      other = Croudia::User.new(id: 1, name: 'fuga')
+      expect(user == other).to be_true
     end
 
-    it 'returns false if usernames are different' do
-      user1 = Croudia::User.new(:username => 'wktk', :name => 'wktk')
-      user2 = Croudia::User.new(:username => 'croudia', :name => 'wktk')
-      (user1 == user2).should be_false
+    it 'returns false when objects IDs are different' do
+      user = Croudia::User.new(id: 1)
+      other = Croudia::User.new(id: 2)
+      expect(user == other).to be_false
     end
 
-    it 'returns false if classes are different' do
-      user1 = Croudia::User.new(:username => 'wktk', :name => 'wktk')
-      user2 = { :username => 'wktk', :name => 'wktk' }
-      (user1 == user2).should be_false
+    it 'returns false when classes are different' do
+      user = Croudia::User.new(id: 1)
+      other = Croudia::Identity.new(id: 1)
+      expect(user == other).to be_false
+    end
+  end
+
+  describe '#created_at' do
+    it 'returns a Time' do
+      user = Croudia::User.new(id: 3, created_at: 'Mon, 08 2013 01:23:45 +0900')
+      expect(user.created_at).to be_a Time
     end
   end
 end
