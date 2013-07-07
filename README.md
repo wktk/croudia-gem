@@ -32,8 +32,8 @@ croudia = Croudia::Client.new(
 # Get URL
 url = croudia.authorize_url
 
-# Or add scope query in URL
-url = croudia.authrorize_url(scope: "scope_value")
+# Or add state query in URL
+url = croudia.authrorize_url(state: "state_value")
 
 # Retrieve an access token
 access_token = croudia.get_access_token("code param returned by user")
