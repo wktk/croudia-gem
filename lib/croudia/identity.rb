@@ -1,39 +1,22 @@
+require 'croudia/base'
+
 module Croudia
-  class Identity
-    attr_reader :id, :time
-    alias id_str id
-    alias created_at time
-
-    def initialize(attrs)
-      attrs.keys.each do |key|
-        if 'time' == key.to_s && !attrs[key].is_a?(Time)
-          if /^\d+$/ =~ attrs[key]
-            attrs[key] = Time.at(attrs[key].to_i)
-          else
-            attrs[key] = Time.new(*attrs[key].split(/\D/))
-          end
-        elsif /_count$/ =~ key.to_s
-          attrs[key] = attrs[key].to_i
-        end
-
-        instance_variable_set(:"@#{key}", attrs[key])
-      end
+  class Identity < Croudia::Base
+    def initialize(*)
+      super
+      raise ArgumentError, 'argument must have an :id key' unless id
+      @attrs[:id_str] = id.to_s
     end
 
+    # @param other [Croudia::Identity]
+    # @return [Boolean]
     def ==(other)
-      super || self.class == other.class && @id == other.id
+      super || self.class == other.class && id == other.id
     end
 
-    def [](name)
-      instance_variable_get(:"@#{name}")
-    end
-
+    # @return [Integer]
     def id
-      @id
-    end
-
-    def method_missing(name, *args)
-      self[name]
+      @attrs[:id]
     end
   end
 end

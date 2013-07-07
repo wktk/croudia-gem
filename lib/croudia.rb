@@ -1,23 +1,32 @@
-require 'croudia/scraper'
+require 'croudia/client'
+require 'croudia/configurable'
+require 'croudia/version'
 
 module Croudia
   class << self
-    # Delegate to Croudia::Scraper.new
+    include Croudia::Configurable
+
+    # Delegate to a Croudia::Client
     #
-    # @return [Croudia::Scraper]
-    def scraper(*args, &block)
-      Croudia::Scraper.new(*args, &block)
+    # @return [Croudia::Client]
+    def client
+      if !@client || @client.hash != options.hash
+        @client = Croudia::Client.new
+      end
+      @client
     end
-    alias new scraper
-    alias client scraper
+
+    def respond_to?(*args)
+      super || client.respond_to?(*args)
+    end
+
+  private
 
     def method_missing(name, *args, &block)
-      return super unless scraper.respond_to?(name)
-      scraper.send(name, *args, &block)
-    end
-
-    def respond_to?(name)
-      scraper.respond_to?(name) || super
+      return super unless client.respond_to?(name)
+      client.send(name, *args, &block)
     end
   end
 end
+
+Croudia.setup
