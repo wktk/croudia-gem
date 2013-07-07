@@ -1,6 +1,6 @@
 # Croudia
 
-A Mechanize-based scraper for [Croudia](https://croudia.com)
+A Ruby Wapper for the [Croudia](https://croudia.com) API
 
 ## Installation
 
@@ -18,24 +18,41 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
-require 'croudia'
+### Getting an access token
 
-# Create a new instance
-croudia = Croudia.new('username', 'password')
+``` ruby
+require "croudia"
 
-# Same as above
-croudia = Croudia.new
-croudia.login('username', 'password')
+# Initialize a new instance
+croudia = Croudia::Client.new(
+  client_id: "client_id",
+  client_secret: "client_secret"
+)
 
-# Update status
-croudia.update('Hello!')
+# Get URL
+url = croudia.authorize_url
 
-# Follow @wktk
-croudia.follow('wktk')
+# Or add scope query in URL
+url = croudia.authrorize_url(scope: "scope_value")
 
-# Get the home timeline
-croudia.timeline
+# Retrieve an access token
+access_token = croudia.get_access_token("code param returned by user")
+#=> { "access_token" => " ... ", "refresh_token" => " ... ", ... }
+```
+
+### Using the API
+
+``` ruby
+require "croudia"
+
+# Create an instance
+croudia = Croudia::Client.new(access_token: "access_token")
+
+# Get home_timeline
+home_timeline = croudia.home_timeline
+
+# Post a status
+posted_status = croudia.update("Hello!")
 ```
 
 ## Contributing
