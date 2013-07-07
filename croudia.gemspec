@@ -3,9 +3,9 @@ require File.expand_path('../lib/croudia/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['wktk']
-  gem.email         = ['wktk@wktk.in']
-  gem.description   = 'A Mechanize-based scraper for Croudia'
-  gem.summary       = 'Croudia scraper'
+  gem.email         = ['mail@wktk.jp']
+  gem.description   = 'Ruby Wrapper for the Croudia API'
+  gem.summary       = 'Croudia API'
   gem.homepage      = 'https://github.com/wktk/croudia-gem'
 
   gem.files         = `git ls-files`.split($\)
@@ -15,9 +15,11 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Croudia::VERSION
 
-  gem.add_dependency 'mechanize', '~> 2.5.1'
-  gem.add_development_dependency 'rake', '~> 0.9.2.2'
-  gem.add_development_dependency 'rdoc', '~> 3.12'
-  gem.add_development_dependency 'rspec', '~> 2.12.0'
-  gem.add_development_dependency 'webmock', '~> 1.8.7'
+  gem.add_dependency 'faraday', '~> 0.8.7'
+  gem.add_dependency 'faraday_middleware', '~> 0.9.0'
+  gem.add_dependency 'hashie', '~> 2.0.5'
+  gem.add_development_dependency 'rake', '~> 10.1.0'
+  gem.add_development_dependency 'rdoc', '~> 4.0.1'
+  gem.add_development_dependency 'rspec', '~> 2.14.0'
+  gem.add_development_dependency 'webmock', '~> 1.13.0'
 end
