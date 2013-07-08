@@ -49,5 +49,15 @@ describe Croudia::API::OAuth do
           client_secret: 'cs-value',
       })).to have_been_made
     end
+
+    it 'returns the correct token' do
+      access_token = @client.get_access_token(code: 'code_value')
+      expect(access_token['access_token']).to eq 'access_token_value'
+    end
+
+    it 'can return a token via #access_token' do
+      access_token = @client.get_access_token(code: 'code_value')
+      expect(access_token.access_token).to eq 'access_token_value'
+    end
   end
 end

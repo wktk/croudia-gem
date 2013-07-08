@@ -1,3 +1,5 @@
+require 'croudia/access_token'
+
 module Croudia
   module API
     module OAuth
@@ -25,7 +27,8 @@ module Croudia
         params[:client_id] ||= @client_id
         params[:client_secret] ||= @client_secret
         params[:grant_type] ||= 'authorization_code'
-        post('/oauth/token', params)
+        resp = post('/oauth/token', params)
+        Croudia::AccessToken.new(resp)
       end
     end
   end
