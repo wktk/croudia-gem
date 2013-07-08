@@ -21,7 +21,6 @@ module Croudia
     MIDDLEWARE = Faraday::Builder.new do |builder|
       builder.request :url_encoded
 
-      builder.response :mashify
       builder.response :json
       builder.response :raise_error
 
