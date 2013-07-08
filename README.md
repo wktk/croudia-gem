@@ -38,6 +38,12 @@ url = croudia.authrorize_url(state: "state_value")
 # Retrieve an access token
 access_token = croudia.get_access_token("code param returned by user")
 #=> { "access_token" => " ... ", "refresh_token" => " ... ", ... }
+
+# Refresh an access token
+new_access_token = croudia.get_access_token(
+  grant_type: :refresh_token,
+  refresh_token: "refresh_token"
+)
 ```
 
 ### Using the API
