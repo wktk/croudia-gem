@@ -5,7 +5,7 @@ module Croudia
     def initialize(*)
       super
       raise ArgumentError, 'argument must have an :id key' unless id
-      @attrs[:id_str] = id.to_s
+      @attrs[:id_str] ||= id.to_s
     end
 
     # @param other [Croudia::Identity]
