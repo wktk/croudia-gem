@@ -5,10 +5,10 @@ module Croudia
         mod = Module.new do
           attrs.each do |attr|
             define_method(attr) do
-              @attrs[attr.to_sym]
+              @attrs[attr.to_s] || @attrs[attr.to_sym]
             end
             define_method("#{attr}?") do
-              !!@attrs[attr.to_sym]
+              !!(@attrs[attr.to_s] || @attrs[attr.to_sym])
             end
           end
         end

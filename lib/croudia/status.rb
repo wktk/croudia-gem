@@ -14,13 +14,13 @@ module Croudia
       :text, :user
 
     def initialize(attrs={})
-      user = attrs.delete(:user)
-      pss = attrs.delete(:play_spread_status)
-      reply_status = attrs.delete(:reply_status)
+      user = attrs.delete('user')
+      pss = attrs.delete('play_spread_status')
+      reply_status = attrs.delete('reply_status')
       super(attrs)
-      @attrs[:user] = Croudia::User.new(user) if user
-      @attrs[:play_spread_status] = Croudia::Status.new(pss) if pss
-      @attrs[:reply_status] = Croudia::Status.new(reply_status) if reply_status
+      @attrs['user'] = Croudia::User.new(user) if user
+      @attrs['play_spread_status'] = Croudia::Status.new(pss) if pss
+      @attrs['reply_status'] = Croudia::Status.new(reply_status) if reply_status
     end
   end
-end   
+end 

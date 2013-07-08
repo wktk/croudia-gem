@@ -2,7 +2,7 @@ require 'helper'
 
 describe Croudia::Base do
   before do
-    @base = Croudia::Base.new(id: 1)
+    @base = Croudia::Base.new('id' => 1)
   end
 
   describe '#[]' do
@@ -21,7 +21,7 @@ describe Croudia::Base do
 
   describe '#attrs' do
     it 'returns a hash of attributes' do
-      expect(@base.attrs).to eq({id: 1})
+      expect(@base.attrs).to eq({'id' => 1})
     end
   end
 end
