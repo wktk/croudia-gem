@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'croudia/configurable'
+require 'croudia/version'
 
 module Croudia
   module Default
