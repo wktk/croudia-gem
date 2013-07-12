@@ -70,4 +70,18 @@ describe Croudia::API::Statuses do
       expect(a_get('/statuses/show/1234.json')).to have_been_made
     end
   end
+
+  describe '#spread' do
+    before do
+      stub_post('/statuses/spread/1234.json').to_return(
+        body: fixture(:status),
+        header: { content_type: 'application/json: charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.spread(1234)
+      expect(a_post('/statuses/spread/1234.json')).to have_been_made
+    end
+  end
 end
