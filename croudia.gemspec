@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = 'Ruby Wrapper for the Croudia API'
   gem.summary       = 'Croudia API'
   gem.homepage      = 'https://github.com/wktk/croudia-gem'
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
