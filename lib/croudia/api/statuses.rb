@@ -50,6 +50,22 @@ module Croudia
         resp = get("/statuses/show/#{status_id}.json", params)
         Croudia::Status.new(resp)
       end
+
+      # Spread a status
+      #
+      # @param status_id [String, Integer, Croudia::Status] Status to spread
+      # @param params [Hash]
+      # @return [Croudia::Status] My status including spreaded status
+      def spread(status_id, params={})
+        case status_id
+        when String, Integer
+        when Croudia::Status
+          status_id = status_id.id_str
+        end
+
+        resp = post("/statuses/spread/#{status_id}.json", params)
+        Croudia::Status.new(resp)
+      end
     end
   end
 end
