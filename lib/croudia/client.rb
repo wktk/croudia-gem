@@ -1,3 +1,4 @@
+require 'croudia/api/account'
 require 'croudia/api/favorites'
 require 'croudia/api/oauth'
 require 'croudia/api/statuses'
@@ -9,6 +10,7 @@ require 'faraday'
 
 module Croudia
   class Client
+    include Croudia::API::Account
     include Croudia::API::Favorites
     include Croudia::API::OAuth
     include Croudia::API::Statuses
