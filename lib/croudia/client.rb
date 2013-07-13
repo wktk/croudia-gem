@@ -1,8 +1,10 @@
 require 'croudia/api/account'
 require 'croudia/api/favorites'
+require 'croudia/api/friendships'
 require 'croudia/api/oauth'
 require 'croudia/api/statuses'
 require 'croudia/api/timelines'
+require 'croudia/api/users'
 require 'croudia/configurable'
 require 'croudia/ext/openssl'
 require 'croudia/version'
@@ -12,9 +14,11 @@ module Croudia
   class Client
     include Croudia::API::Account
     include Croudia::API::Favorites
+    include Croudia::API::Friendships
     include Croudia::API::OAuth
     include Croudia::API::Statuses
     include Croudia::API::Timelines
+    include Croudia::API::Users
     include Croudia::Configurable
 
     # Initialize a new Client object
