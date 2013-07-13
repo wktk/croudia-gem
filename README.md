@@ -1,5 +1,7 @@
 # Croudia
 
+[![Build Status](https://travis-ci.org/wktk/croudia-gem.png)](https://travis-ci.org/wktk/croudia-gem)
+
 A Ruby Wapper for the [Croudia](https://croudia.com) API
 
 ## Installation
