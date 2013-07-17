@@ -2,18 +2,11 @@ module Croudia
   class Base
     class << self
       def attr_reader(*attrs)
-        mod = Module.new do
-          attrs.each do |attr|
-            define_method(attr) do
-              @attrs[attr.to_s] || @attrs[attr.to_sym]
-            end
-            define_method("#{attr}?") do
-              !!(@attrs[attr.to_s] || @attrs[attr.to_sym])
-            end
+        attrs.each do |attr|
+          define_method(attr) do
+            @attrs[attr.to_s] || @attrs[attr.to_sym]
           end
         end
-        const_set(:Attributes, mod)
-        include mod
       end
     end
 
