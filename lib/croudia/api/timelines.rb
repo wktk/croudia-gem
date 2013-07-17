@@ -27,17 +27,7 @@ module Croudia
       # @param params [Hash]
       # @return [Array<Croudia::Status>
       def user_timeline(user, params={})
-        case user
-        when String
-          params[:screen_name] ||= user
-        when Integer
-          params[:user_id] ||= user
-        when Croudia::User
-          params[:user_id] ||= user.id_str
-        when Hash
-          params = user.merge(params)
-        end
-
+        merge_user!(params, user)
         resp = get('/statuses/user_timeline.json', params)
         objectify_statuses(resp)
       end
@@ -47,11 +37,6 @@ module Croudia
         objectify_statuses(resp)
       end
       alias mentions_timeline mentions
-
-    private
-      def objectify_statuses(statuses)
-        statuses.map { |status| Croudia::Status.new(status) }
-      end
     end
   end
 end

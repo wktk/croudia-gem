@@ -26,12 +26,7 @@ module Croudia
       # @param params [Hash]
       # @return [Croudia::Status] Deleted status
       def destroy_status(status_id, params={})
-        case status_id
-        when String, Integer
-        when Croudia::Status
-          status_id = status_id.id_str
-        end
-
+        status_id = get_status_id(status_id)
         resp = post("/statuses/destroy/#{status_id}.json", params)
         Croudia::Status.new(resp)
       end
@@ -42,12 +37,7 @@ module Croudia
       # @param params [Hash]
       # @return [Croudia::Status]
       def status(status_id, params={})
-        case status_id
-        when String, Integer
-        when Croudia::Status
-          status_id = status_id.id_str
-        end
-
+        status_id = get_status_id(status_id)
         resp = get("/statuses/show/#{status_id}.json", params)
         Croudia::Status.new(resp)
       end
@@ -58,12 +48,7 @@ module Croudia
       # @param params [Hash]
       # @return [Croudia::Status] My status including spreaded status
       def spread(status_id, params={})
-        case status_id
-        when String, Integer
-        when Croudia::Status
-          status_id = status_id.id_str
-        end
-
+        status_id = get_status_id(status_id)
         resp = post("/statuses/spread/#{status_id}.json", params)
         Croudia::Status.new(resp)
       end

@@ -5,6 +5,7 @@ require 'croudia/api/oauth'
 require 'croudia/api/statuses'
 require 'croudia/api/timelines'
 require 'croudia/api/users'
+require 'croudia/api/utils'
 require 'croudia/configurable'
 require 'croudia/ext/openssl'
 require 'croudia/version'
@@ -19,6 +20,7 @@ module Croudia
     include Croudia::API::Statuses
     include Croudia::API::Timelines
     include Croudia::API::Users
+    include Croudia::API::Utils
     include Croudia::Configurable
 
     # Initialize a new Client object
