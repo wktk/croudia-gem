@@ -55,6 +55,10 @@ describe Croudia::API::OAuth do
       expect(access_token['access_token']).to eq 'access_token_value'
     end
 
+    it 'returns AccessToken object' do
+      expect(@client.get_access_token('code_value')).to be_a Croudia::AccessToken
+    end
+
     it 'can return a token via #access_token' do
       access_token = @client.get_access_token(code: 'code_value')
       expect(access_token.access_token).to eq 'access_token_value'

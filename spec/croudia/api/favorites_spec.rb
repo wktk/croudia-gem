@@ -17,6 +17,10 @@ describe Croudia::API::Favorites do
       @client.favorite(1234)
       expect(a_post('/favorites/create/1234.json')).to have_been_made
     end
+
+    it 'returns a Status object' do
+      expect(@client.favorite(1234)).to be_a Croudia::Status
+    end
   end
 
   describe '#unfavorite' do
@@ -30,6 +34,10 @@ describe Croudia::API::Favorites do
     it 'requests the correct resource' do
       @client.unfavorite(1234)
       expect(a_delete('/favorites/destroy/1234.json')).to have_been_made
+    end
+
+    it 'returns a Status object' do
+      expect(@client.unfavorite(1234)).to be_a Croudia::Status
     end
   end
 end

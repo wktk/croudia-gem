@@ -17,5 +17,9 @@ describe Croudia::API::Account do
       @client.verify_credentials
       expect(a_get('/account/verify_credentials.json')).to have_been_made
     end
+
+    it 'returns a User object' do
+      expect(@client.verify_credentials).to be_a Croudia::User
+    end
   end
 end

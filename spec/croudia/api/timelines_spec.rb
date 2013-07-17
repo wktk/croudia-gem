@@ -17,6 +17,12 @@ describe Croudia::API::Timelines do
       @client.public_timeline
       expect(a_get('/statuses/public_timeline.json')).to have_been_made
     end
+
+    it 'returns array of Status object' do
+      tl = @client.public_timeline
+      expect(tl).to be_a Array
+      tl.each { |status| expect(status).to be_a Croudia::Status }
+    end
   end
 
   describe '#home_timeline' do
@@ -30,6 +36,12 @@ describe Croudia::API::Timelines do
     it 'requests the correct resource' do
       @client.home_timeline
       expect(a_get('/statuses/home_timeline.json')).to have_been_made
+    end
+
+    it 'returns array of Status object' do
+      tl = @client.home_timeline
+      expect(tl).to be_a Array
+      tl.each { |status| expect(status).to be_a Croudia::Status }
     end
   end
 
@@ -75,6 +87,19 @@ describe Croudia::API::Timelines do
         )).to have_been_made
       end
     end
+
+    it 'returns array of Status object' do
+      stub_get('/statuses/user_timeline.json').with(
+        query: { screen_name: 'wktk' }
+      ).to_return(
+        body: fixture(:timeline),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+
+      tl = @client.user_timeline('wktk')
+      expect(tl).to be_a Array
+      tl.each { |status| expect(status).to be_a Croudia::Status }
+    end
   end
 
   describe '#mentions' do
@@ -88,6 +113,12 @@ describe Croudia::API::Timelines do
     it 'requests the correct resource' do
       @client.mentions
       expect(a_get('/statuses/mentions.json')).to have_been_made
+    end
+
+    it 'returns array of Status object' do
+      tl = @client.mentions
+      expect(tl).to be_a Array
+      tl.each { |status| expect(status).to be_a Croudia::Status }
     end
   end
 end

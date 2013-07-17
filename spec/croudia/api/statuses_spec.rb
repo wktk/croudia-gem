@@ -41,6 +41,12 @@ describe Croudia::API::Statuses do
         )).to have_been_made
       end
     end
+
+    it 'returns a Status object' do
+      expect(
+        @client.update('Hello', in_reply_to_status_id: 1234)
+      ).to be_a Croudia::Status
+    end
   end
 
   describe '#destroy_status' do
@@ -54,6 +60,10 @@ describe Croudia::API::Statuses do
     it 'requests the correct resource' do
       @client.destroy_status(1234)
       expect(a_post('/statuses/destroy/1234.json')).to have_been_made
+    end
+
+    it 'returns a Status object' do
+      expect(@client.destroy_status(1234)).to be_a Croudia::Status
     end
   end
 
@@ -69,6 +79,10 @@ describe Croudia::API::Statuses do
       @client.status(1234)
       expect(a_get('/statuses/show/1234.json')).to have_been_made
     end
+
+    it 'returns a Status object' do
+      expect(@client.status(1234)).to be_a Croudia::Status
+    end
   end
 
   describe '#spread' do
@@ -82,6 +96,10 @@ describe Croudia::API::Statuses do
     it 'requests the correct resource' do
       @client.spread(1234)
       expect(a_post('/statuses/spread/1234.json')).to have_been_made
+    end
+
+    it 'returns a Status object' do
+      expect(@client.spread(1234)).to be_a Croudia::Status
     end
   end
 end
