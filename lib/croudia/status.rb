@@ -6,11 +6,24 @@ module Croudia
   class Status < Croudia::Identity
     include Croudia::Creatable
 
-    attr_reader :favorited, :favorited_count,
-      :in_reply_to_screen_name, :in_reply_to_status_id_str,
-      :in_reply_to_status_id, :in_reply_to_user_id_str,
-      :in_reply_to_user_id, :spread, :spread_count, :spread_status,
-      :reply_status, :source, :text, :user
+    KEYS = [
+      :favorited,
+      :favorited_count,
+      :in_reply_to_screen_name,
+      :in_reply_to_status_id_str,
+      :in_reply_to_status_id,
+      :in_reply_to_user_id_str,
+      :in_reply_to_user_id, 
+      :spread, 
+      :spread_count, 
+      :spread_status,
+      :reply_status,
+      :source,
+      :text,
+      :user,
+    ]
+
+    attr_reader(*KEYS)
 
     def initialize(attrs={})
       user = attrs.delete('user')

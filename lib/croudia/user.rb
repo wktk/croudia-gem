@@ -5,8 +5,20 @@ module Croudia
   class User < Croudia::Identity
     include Croudia::Creatable
 
-    attr_reader :description, :favorites_count, :follow_request_sent,
-      :followers_count, :fruends_count, :location, :name, :profile_image_url_https,
-      :screen_name, :statuses_count, :url
+    KEYS = [ 
+      :description,
+      :favorites_count,
+      :follow_request_sent,
+      :followers_count,
+      :friends_count,
+      :location,
+      :name,
+      :profile_image_url_https,
+      :screen_name,
+      :statuses_count,
+      :url,
+    ]
+
+    attr_reader(*KEYS)
   end
 end
