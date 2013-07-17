@@ -32,7 +32,8 @@ module Croudia
           status_id = status_id.id_str
         end
 
-        post("/statuses/destroy/#{status_id}.json", params)
+        resp = post("/statuses/destroy/#{status_id}.json", params)
+        Croudia::Status.new(resp)
       end
 
       # Retrieve a status
