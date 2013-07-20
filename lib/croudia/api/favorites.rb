@@ -3,6 +3,23 @@ require 'croudia/status'
 module Croudia
   module API
     module Favorites
+      # List of favorited statuses
+      #
+      # @param user [String]
+      # @param params [Hash]
+      # @return [Array<Croudia::Status>]
+      def favorites(user={}, params={})
+        resp = case user
+        when Hash
+          params.merge!(user)
+          get('/favorites.json', params)
+        else
+          get("/favorites/#{user}.json", params)
+        end
+
+        objects(Croudia::Status, resp)
+      end
+
       # Favorite a status
       #
       # @param status_id [String, Integer, Croudia::Status]
