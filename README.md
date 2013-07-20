@@ -4,6 +4,9 @@
 
 A Ruby Wapper for the [Croudia](https://croudia.com) API
 
+This software is not affiliated with [Croudia Inc](http://croudia.co.jp/).
+Croudia is a registered trademark of Croudia Inc. in Japan.
+
 ## Installation
 
 Add this line to your application's Gemfile:
