@@ -5,7 +5,8 @@ module Croudia
   class User < Croudia::Identity
     include Croudia::Creatable
 
-    KEYS = [ 
+    KEYS = [
+      :id_str,
       :description,
       :favorites_count,
       :follow_request_sent,

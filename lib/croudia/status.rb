@@ -7,6 +7,7 @@ module Croudia
     include Croudia::Creatable
 
     KEYS = [
+      :id_str,
       :favorited,
       :favorited_count,
       :in_reply_to_screen_name,
