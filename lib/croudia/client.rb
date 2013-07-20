@@ -2,6 +2,7 @@ require 'croudia/api/account'
 require 'croudia/api/favorites'
 require 'croudia/api/friendships'
 require 'croudia/api/oauth'
+require 'croudia/api/secret_mails'
 require 'croudia/api/statuses'
 require 'croudia/api/timelines'
 require 'croudia/api/users'
@@ -17,6 +18,7 @@ module Croudia
     include Croudia::API::Favorites
     include Croudia::API::Friendships
     include Croudia::API::OAuth
+    include Croudia::API::SecretMails
     include Croudia::API::Statuses
     include Croudia::API::Timelines
     include Croudia::API::Users
