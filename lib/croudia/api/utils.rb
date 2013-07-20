@@ -4,16 +4,15 @@ module Croudia
 
     private
 
-      def get_status_id(status_id)
-        case status_id
+      def get_id(id)
+        case id
         when String, Integer
-        when Croudia::Status
-          status_id = status_id.id_str
+          id
+        when Croudia::Identity
+          id.id_str
         else
-          raise ArgumentError, 'status_id is invalid'
+          raise ArgumentError, 'id is invalid'
         end
-
-        status_id
       end
 
       def merge_user!(params, user)
@@ -33,8 +32,19 @@ module Croudia
         params
       end
 
-      def objectify_statuses(statuses)
-        statuses.map { |status| Croudia::Status.new(status) }
+      def merge_text!(params, text, key=:status)
+        case text
+        when Hash
+          params.merge!(text)
+        else
+          params[key] ||= text.to_s
+        end
+
+        params
+      end
+
+      def objects(klass, array)
+        array.map { |hash| klass.new(hash) }
       end
     end
   end
