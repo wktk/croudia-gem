@@ -9,7 +9,7 @@ module Croudia
       def authorize_url(params={})
         params[:client_id] ||= @client_id
         params[:response_type] ||= 'code'
-        connection.build_url('/oauth/authorize', params).to_s.sub(/^https/, 'http')
+        connection.build_url('/oauth/authorize', params).to_s
       end
 
       # Retrieve access_token
