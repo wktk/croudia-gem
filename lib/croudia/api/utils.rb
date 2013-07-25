@@ -32,6 +32,30 @@ module Croudia
         params
       end
 
+      def merge_users!(params, users)
+        user_ids = []
+        screen_names = []
+
+        users.each do |user|
+          case user
+          when Hash
+            params.merge!(user)
+          when Integer
+            user_ids << user
+          when String
+            screen_names << user
+          when Croudia::User
+            user_ids << user.id_str
+          else
+            raise ArgumentError, 'invalid user'
+          end
+        end
+
+        params[:user_id] = user_ids.join(',') unless user_ids.empty?
+        params[:screen_name] = screen_names.join(',') unless screen_names.empty?
+        params
+      end
+
       def merge_text!(params, text, key=:status)
         case text
         when Hash

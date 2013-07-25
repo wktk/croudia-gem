@@ -1,0 +1,16 @@
+[
+  {
+    "connections": ["none"],
+    "id": 2,
+    "id_str": "2",
+    "name": "Croudia",
+    "screen_name": "croudia"
+  },
+  {
+    "connections": ["following", "followed-by"],
+    "id": 1,
+    "id_str": "1",
+    "name": "Pokemishi",
+    "screen_name": "pokemishi"
+  }
+]

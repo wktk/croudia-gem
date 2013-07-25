@@ -24,6 +24,17 @@ module Croudia
         resp = post('/friendships/destroy.json', params)
         Croudia::User.new(resp)
       end
+
+      # Lookup Friendships
+      #
+      # @param *users [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Array<Croudia::User>]
+      def friendships(*args)
+        merge_users!(params = {}, args)
+        resp = get('/friendships/lookup.json', params)
+        objects(Croudia::User, resp)
+      end
     end
   end
 end

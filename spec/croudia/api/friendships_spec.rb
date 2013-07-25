@@ -84,4 +84,124 @@ describe Croudia::API::Friendships do
       expect(@client.unfollow('wktk')).to be_a Croudia::User
     end
   end
+
+  describe '#friendships' do
+    context 'when String is passed' do
+      before do
+        stub_get('/friendships/lookup.json').with(
+          query: {
+            screen_name: 'wktk',
+          }
+        ).to_return(
+          body: fixture(:friendships),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.friendships('wktk')
+        expect(a_get('/friendships/lookup.json').with(
+          query: {
+            screen_name: 'wktk',
+          }
+        )).to have_been_made
+      end
+
+      it 'returns array of Croudia::User' do
+        subject = @client.friendships('wktk')
+        expect(subject).to be_an Array
+        subject.each { |u| expect(u).to be_a Croudia::User }
+      end
+    end
+
+    context 'when Integer is passed' do
+      before do
+        stub_get('/friendships/lookup.json').with(
+          query: {
+            user_id: '1234',
+          }
+        ).to_return(
+          body: fixture(:friendships),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.friendships(1234)
+        expect(a_get('/friendships/lookup.json').with(
+          query: { 
+            user_id: '1234',
+          }
+        )).to have_been_made
+      end
+    end
+
+    context 'when multiple Strings are passed' do
+      before do
+        stub_get('/friendships/lookup.json').with(
+          query: {
+            screen_name: 'wktk,croudia',
+          }
+        ).to_return(
+          body: fixture(:friendships),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.friendships('wktk', 'croudia')
+        expect(a_get('/friendships/lookup.json').with(
+          query: {
+            screen_name: 'wktk,croudia',
+          }
+        )).to have_been_made
+      end
+    end
+
+    context 'when multiple Integers are passed' do
+      before do
+        stub_get('/friendships/lookup.json').with(
+          query: {
+            user_id: '1234,4567',
+          }
+        ).to_return(
+          body: fixture(:friendships),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.friendships(1234, 4567)
+        expect(a_get('/friendships/lookup.json').with(
+          query: {
+            user_id: '1234,4567',
+          }
+        )).to have_been_made
+      end
+    end
+
+    context 'when multiple String and Integer are passed' do
+      before do
+        stub_get('/friendships/lookup.json').with(
+          query: {
+            user_id: '1234,4567',
+            screen_name: 'wktk,croudia',
+          }
+        ).to_return(
+          body: fixture(:friendships),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.friendships('wktk', 1234, 'croudia', 4567)
+        expect(a_get('/friendships/lookup.json').with(
+          query: {
+            screen_name: 'wktk,croudia',
+            user_id: '1234,4567',
+          }
+        )).to have_been_made
+      end
+    end
+  end
 end

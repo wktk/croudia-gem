@@ -7,6 +7,7 @@ module Croudia
 
     KEYS = [
       :id_str,
+      :connections,
       :description,
       :favorites_count,
       :follow_request_sent,
