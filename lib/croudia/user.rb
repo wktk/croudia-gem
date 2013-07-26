@@ -16,6 +16,7 @@ module Croudia
       :location,
       :name,
       :profile_image_url_https,
+      :protected,
       :screen_name,
       :statuses_count,
       :url,
