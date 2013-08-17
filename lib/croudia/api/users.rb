@@ -13,6 +13,17 @@ module Croudia
         resp = get('/users/show.json', params)
         Croudia::User.new(resp)
       end
+
+      # Lookup Users
+      #
+      # @param *users [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Array<Croudia::User>]
+      def users(*args)
+        merge_users!(params = {}, args)
+        resp = post('/users/lookup.json', params)
+        objects(Croudia::User, resp)
+      end
     end
   end
 end

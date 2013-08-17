@@ -53,4 +53,103 @@ describe Croudia::API::Users do
       expect(@client.user('wktk')).to be_a Croudia::User
     end
   end
+
+  describe '#users' do
+    context 'when String is passed' do
+      before do
+        stub_post('/users/lookup.json').with(
+          body: {
+            screen_name: 'wktk',
+          }
+        ).to_return(
+          body: fixture(:users),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.users('wktk')
+        expect(a_post('/users/lookup.json')).to have_been_made
+      end
+
+      it 'returns array of Croudia::User' do
+        subject = @client.users('wktk')
+        expect(subject).to be_an Array
+        subject.each { |u| expect(u).to be_a Croudia::User }
+      end
+    end
+
+    context 'when Integer is passed' do
+      before do
+        stub_post('/users/lookup.json').with(
+          body: {
+            user_id: '1234',
+          }
+        ).to_return(
+          body: fixture(:users),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.users(1234)
+        expect(a_post('/users/lookup.json')).to have_been_made
+      end
+    end
+
+    context 'when multiple Strings are passed' do
+      before do
+        stub_post('/users/lookup.json').with(
+          body: {
+            screen_name: 'wktk,croudia',
+          }
+        ).to_return(
+          body: fixture(:users),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.users('wktk', 'croudia')
+        expect(a_post('/users/lookup.json')).to have_been_made
+      end
+    end
+
+    context 'when multiple Integers are passed' do
+      before do
+        stub_post('/users/lookup.json').with(
+          body: {
+            user_id: '1234,4567',
+          }
+        ).to_return(
+          body: fixture(:users),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.users(1234, 4567)
+        expect(a_post('/users/lookup.json')).to have_been_made
+      end
+    end
+
+    context 'when multiple String and Integer are passed' do
+      before do
+        stub_post('/users/lookup.json').with(
+          body: {
+            user_id: '1234,4567',
+            screen_name: 'wktk,croudia',
+          }
+        ).to_return(
+          body: fixture(:users),
+          headers: { content_type: 'application/json; charset=utf-8' }
+        )
+      end
+
+      it 'requests the correct resource' do
+        @client.users('wktk', 1234, 'croudia', 4567)
+        expect(a_post('/users/lookup.json')).to have_been_made
+      end
+    end
+  end
 end
