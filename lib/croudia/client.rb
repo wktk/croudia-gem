@@ -60,7 +60,6 @@ module Croudia
     def request(method, path, params={})
       connection.send(method.to_sym, path, params) do |request|
         request.headers[:authorization] = "Bearer #{@access_token}" if @access_token
-        request.headers[:content_type] = 'application/x-www-form-urlencoded; charset=utf-8'
       end.body
     end
 
