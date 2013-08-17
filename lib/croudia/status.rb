@@ -1,4 +1,5 @@
 require 'croudia/creatable'
+require 'croudia/entities'
 require 'croudia/identity'
 require 'croudia/source'
 require 'croudia/user'
@@ -9,6 +10,7 @@ module Croudia
 
     KEYS = [
       :id_str,
+      :entities,
       :favorited,
       :favorited_count,
       :in_reply_to_screen_name,
@@ -28,11 +30,13 @@ module Croudia
     attr_reader(*KEYS)
 
     def initialize(attrs={})
+      entities = attrs.delete('entities')
       user = attrs.delete('user')
       reply_status = attrs.delete('reply_status')
       spread_status = attrs.delete('spread_status')
       source = attrs.delete('source')
       super(attrs)
+      @attrs['entities'] = Croudia::Entities.new(entities) if entities
       @attrs['user'] = Croudia::User.new(user) if user
       @attrs['reply_status'] = Croudia::Status.new(reply_status) if reply_status
       @attrs['spread_status'] = Croudia::Status.new(spread_status) if spread_status
