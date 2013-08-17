@@ -12,6 +12,17 @@ module Croudia
         Croudia::User.new(resp)
       end
       alias current_user verify_credentials
+
+      # Update profile image
+      #
+      # @param image [File] New profile image
+      # @param params [Hash]
+      # @return [Croudia::User] Authenticated user object with new image
+      def update_profile_image(image, params={})
+        merge_file!(params, image, :image)
+        resp = post('/account/update_profile_image.json', params)
+        Croudia::User.new(resp)
+      end
     end
   end
 end

@@ -22,4 +22,23 @@ describe Croudia::API::Account do
       expect(@client.verify_credentials).to be_a Croudia::User
     end
   end
+
+  describe '#update_profile_image' do
+    before do
+      stub_post('/account/update_profile_image.json').to_return(
+        body: fixture(:user),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.update_profile_image(fixture('image.jpg'))
+      expect(a_post('/account/update_profile_image.json')).to have_been_made
+    end
+
+    it 'returns a Croudia::User' do
+      subject = @client.update_profile_image(fixture('image.jpg'))
+      expect(subject).to be_a Croudia::User
+    end
+  end
 end

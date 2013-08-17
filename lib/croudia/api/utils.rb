@@ -15,6 +15,18 @@ module Croudia
         end
       end
 
+      def merge_file!(params, file, key=:file)
+        case file
+        when Hash
+          params.merge!(file)
+        when File
+          params[key] = file
+        else
+          raise ArgumentError, "#{key} must be a File"
+        end
+        params
+      end
+
       def merge_user!(params, user, sn_key=:screen_name, user_key=:user_id)
         case user
         when Hash
