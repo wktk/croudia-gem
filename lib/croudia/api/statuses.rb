@@ -15,6 +15,18 @@ module Croudia
         Croudia::Status.new(resp)
       end
 
+      # Update status with media
+      #
+      # @param status [String] Status text
+      # @param media [File] Image to upload with
+      # @return [Croudia::Status]
+      def update_with_media(status, media={}, params={})
+        merge_text!(params, status)
+        merge_file!(params, media, :media)
+        resp = post('/statuses/update_with_media.json', params)
+        Croudia::Status.new(resp)
+      end
+
       # Destroy a status
       #
       # @param status_id [String, Integer, Croudia::Status] Status to delete

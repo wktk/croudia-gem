@@ -49,6 +49,34 @@ describe Croudia::API::Statuses do
     end
   end
 
+  describe '#update_with_media' do
+    before do
+      stub_post('/statuses/update_with_media.json').to_return(
+        body: fixture(:status),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    context 'when passing each argument' do
+      it 'requests the correct resource' do
+        @client.update_with_media('Hi', fixture('image.jpg'))
+        expect(a_post('/statuses/update_with_media.json')).to have_been_made
+      end
+    end
+
+    context 'when passing a Hash' do
+      it 'requests the correct resource' do
+        @client.update_with_media(status: 'Hi', media: fixture('image.jpg'))
+        expect(a_post('/statuses/update_with_media.json')).to have_been_made
+      end
+    end
+
+    it 'returns a Croudia::Status' do
+      subject = @client.update_with_media('Hi', fixture('image.jpg'))
+      expect(subject).to be_a Croudia::Status
+    end
+  end
+
   describe '#destroy_status' do
     before do
       stub_post('/statuses/destroy/1234.json').to_return(
