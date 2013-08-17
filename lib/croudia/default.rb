@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'croudia/configurable'
+require 'croudia/request/multipart_with_file'
 require 'croudia/version'
 
 module Croudia
@@ -20,6 +21,8 @@ module Croudia
       },
     } unless defined? Croudia::Default::CONNECTION_OPTIONS
     MIDDLEWARE = Faraday::Builder.new do |builder|
+      builder.request :multipart_with_file
+      builder.request :multipart
       builder.request :url_encoded
 
       builder.response :json
