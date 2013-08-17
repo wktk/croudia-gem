@@ -25,7 +25,7 @@ module Croudia
       builder.response :json
       builder.response :raise_error
 
-      builder.adapter :net_http
+      builder.adapter Faraday.default_adapter
     end unless defined? Croudia::Default::MIDDLEWARE
 
     class << self
