@@ -2,6 +2,9 @@ require 'faraday'
 require 'faraday_middleware'
 require 'croudia/configurable'
 require 'croudia/request/multipart_with_file'
+require 'croudia/request/raise_error'
+require 'croudia/response/parse_json'
+require 'croudia/response/raise_error'
 require 'croudia/version'
 
 module Croudia
@@ -24,9 +27,10 @@ module Croudia
       builder.request :multipart_with_file
       builder.request :multipart
       builder.request :url_encoded
+      builder.request :raise_error
 
-      builder.response :json
       builder.response :raise_error
+      builder.response :parse_json
 
       builder.adapter Faraday.default_adapter
     end unless defined? Croudia::Default::MIDDLEWARE
