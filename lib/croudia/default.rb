@@ -13,7 +13,7 @@ module Croudia
       },
       request: {
         open_timeout: 5,
-        timeout: 10,
+        timeout: 20,
       },
       ssl: {
         verify: true,
