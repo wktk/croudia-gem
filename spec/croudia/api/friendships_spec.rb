@@ -85,6 +85,49 @@ describe Croudia::API::Friendships do
     end
   end
 
+  describe '#friendship' do
+    before do
+      stub_get('/friendships/show.json').with(
+        query: {
+          source_id: '1234',
+          target_id: '3456',
+        }
+      ).to_return(
+        body: fixture(:friendship),
+        headers: { content_type: 'appplication/json; charset=utf-8' }
+      )
+    end
+
+    context 'when passing a Hash' do
+      it 'requests the correct resource' do
+        @client.friendship(source_id: 1234, target_id: 3456)
+        expect(a_get('/friendships/show.json').with(
+          query: {
+            source_id: '1234',
+            target_id: '3456',
+          }
+        )).to have_been_made
+      end
+    end
+
+    context 'when passing each argument' do
+      it 'requests the correct resource' do
+        @client.friendship(1234, 3456)
+        expect(a_get('/friendships/show.json').with(
+          query: {
+            source_id: '1234',
+            target_id: '3456',
+          }
+        )).to have_been_made
+      end
+    end
+
+    it 'returns a Relationship' do
+      subject = @client.friendship(1234, 3456)
+      expect(subject).to be_a Croudia::Relationship
+    end
+  end
+
   describe '#friendships' do
     context 'when String is passed' do
       before do

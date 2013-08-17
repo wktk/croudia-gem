@@ -7,10 +7,13 @@ module Croudia
 
     KEYS = [
       :id_str,
+      :blocking,
       :connections,
       :description,
       :favorites_count,
       :follow_request_sent,
+      :followed_by,
+      :following,
       :followers_count,
       :friends_count,
       :location,

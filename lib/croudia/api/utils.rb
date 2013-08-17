@@ -15,16 +15,16 @@ module Croudia
         end
       end
 
-      def merge_user!(params, user)
+      def merge_user!(params, user, sn_key=:screen_name, user_key=:user_id)
         case user
         when Hash
           params.merge!(user)
         when String
-          params[:screen_name] = user
+          params[sn_key] = user
         when Integer
-          params[:user_id] = user
+          params[user_key] = user
         when Croudia::User
-          params[:user_id] = user.id_str
+          params[user_key] = user.id_str
         else
           raise ArgumentError, 'user must be a String, Integer or User'
         end
