@@ -57,8 +57,8 @@ describe Croudia::API::Users do
   describe '#users' do
     context 'when String is passed' do
       before do
-        stub_post('/users/lookup.json').with(
-          body: {
+        stub_get('/users/lookup.json').with(
+          query: {
             screen_name: 'wktk',
           }
         ).to_return(
@@ -69,7 +69,11 @@ describe Croudia::API::Users do
 
       it 'requests the correct resource' do
         @client.users('wktk')
-        expect(a_post('/users/lookup.json')).to have_been_made
+        expect(a_get('/users/lookup.json').with(
+          query: {
+            screen_name: 'wktk',
+          }
+        )).to have_been_made
       end
 
       it 'returns array of Croudia::User' do
@@ -81,8 +85,8 @@ describe Croudia::API::Users do
 
     context 'when Integer is passed' do
       before do
-        stub_post('/users/lookup.json').with(
-          body: {
+        stub_get('/users/lookup.json').with(
+          query: {
             user_id: '1234',
           }
         ).to_return(
@@ -93,14 +97,18 @@ describe Croudia::API::Users do
 
       it 'requests the correct resource' do
         @client.users(1234)
-        expect(a_post('/users/lookup.json')).to have_been_made
+        expect(a_get('/users/lookup.json').with(
+          query: {
+            user_id: '1234',
+          }
+        )).to have_been_made
       end
     end
 
     context 'when multiple Strings are passed' do
       before do
-        stub_post('/users/lookup.json').with(
-          body: {
+        stub_get('/users/lookup.json').with(
+          query: {
             screen_name: 'wktk,croudia',
           }
         ).to_return(
@@ -111,14 +119,18 @@ describe Croudia::API::Users do
 
       it 'requests the correct resource' do
         @client.users('wktk', 'croudia')
-        expect(a_post('/users/lookup.json')).to have_been_made
+        expect(a_get('/users/lookup.json').with(
+          query: {
+            screen_name: 'wktk,croudia',
+          }
+        )).to have_been_made
       end
     end
 
     context 'when multiple Integers are passed' do
       before do
-        stub_post('/users/lookup.json').with(
-          body: {
+        stub_get('/users/lookup.json').with(
+          query: {
             user_id: '1234,4567',
           }
         ).to_return(
@@ -129,14 +141,18 @@ describe Croudia::API::Users do
 
       it 'requests the correct resource' do
         @client.users(1234, 4567)
-        expect(a_post('/users/lookup.json')).to have_been_made
+        expect(a_get('/users/lookup.json').with(
+          query: {
+            user_id: '1234,4567',
+          }
+        )).to have_been_made
       end
     end
 
     context 'when multiple String and Integer are passed' do
       before do
-        stub_post('/users/lookup.json').with(
-          body: {
+        stub_get('/users/lookup.json').with(
+          query: {
             user_id: '1234,4567',
             screen_name: 'wktk,croudia',
           }
@@ -148,7 +164,12 @@ describe Croudia::API::Users do
 
       it 'requests the correct resource' do
         @client.users('wktk', 1234, 'croudia', 4567)
-        expect(a_post('/users/lookup.json')).to have_been_made
+        expect(a_get('/users/lookup.json').with(
+          query: {
+            user_id: '1234,4567',
+            screen_name: 'wktk,croudia',
+          }
+        )).to have_been_made
       end
     end
   end

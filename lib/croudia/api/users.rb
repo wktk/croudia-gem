@@ -21,7 +21,7 @@ module Croudia
       # @return [Array<Croudia::User>]
       def users(*args)
         merge_users!(params = {}, args)
-        resp = post('/users/lookup.json', params)
+        resp = get('/users/lookup.json', params)
         objects(Croudia::User, resp)
       end
     end
