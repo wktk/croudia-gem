@@ -11,7 +11,7 @@ module Croudia
         else
           env[:body] = JSON.parse(env[:body])
         end
-      rescue JSON::ParseError => e
+      rescue JSON::ParserError => e
         raise e if env[:status] == 200
         env[:body] = nil
       end
