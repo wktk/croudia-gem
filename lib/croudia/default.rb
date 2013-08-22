@@ -16,8 +16,8 @@ module Croudia
         user_agent: "Croudia Ruby Gem/#{Croudia::VERSION}",
       },
       request: {
-        open_timeout: 5,
-        timeout: 20,
+        open_timeout: 10,
+        timeout: 30,
       },
       ssl: {
         verify: true,
