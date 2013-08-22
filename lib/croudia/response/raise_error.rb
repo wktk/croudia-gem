@@ -16,6 +16,8 @@ module Croudia
           Croudia::Error::NotFound
         when 400 .. 499
           Croudia::Error::ClientError
+        when 500
+          Croudia::Error::InternalServerError
         when 502
           Croudia::Error::BadGateway
         when 503

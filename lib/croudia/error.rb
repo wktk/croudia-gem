@@ -42,6 +42,7 @@ module Croudia
 
     # 5xx: Server Errors
     class ServerError < ConnectionError; end
+    class InternalServerError < ServerError; end
     class BadGateway < ServerError; end
     class Unavailable < ServerError; end
   end
