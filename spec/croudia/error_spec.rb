@@ -11,8 +11,8 @@ describe Croudia::Error do
       stub_get('/account/verify_credentials.json').to_raise Faraday::Error::ConnectionFailed
     end
 
-    it 'raises Croudia::Error::ConnectionFailed' do
-      expect { @client.verify_credentials }.to raise_error Croudia::Error::ConnectionFailed
+    it 'raises Croudia::Error::NetworkError' do
+      expect { @client.verify_credentials }.to raise_error Croudia::Error::NetworkError
     end
   end
 

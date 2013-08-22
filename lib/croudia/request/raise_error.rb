@@ -9,7 +9,7 @@ module Croudia
       rescue Faraday::Error::TimeoutError => e
         raise Croudia::Error::Timeout.new(e)
       rescue Faraday::Error::ConnectionFailed => e
-        raise Croudia::Error::ConnectionFailed.new(e)
+        raise Croudia::Error::NetworkError.new(e)
       end
     end
   end

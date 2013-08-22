@@ -2,7 +2,7 @@ module Croudia
   class Error < StandardError
 
     # Error connecting to server
-    class ConnectionFailed < Error
+    class NetworkError < Error
       attr_reader :wrapped_exception
 
       def initialize(e)
@@ -19,7 +19,7 @@ module Croudia
       end
     end
 
-    class Timeout < ConnectionFailed; end
+    class Timeout < NetworkError; end
 
     # Error connected to server
     class ConnectionError < Error
