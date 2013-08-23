@@ -23,6 +23,15 @@ module Croudia
         resp = post('/account/update_profile_image.json', params)
         Croudia::User.new(resp)
       end
+
+      # Update profile
+      #
+      # @param params [Hash]
+      # @return [Croudia::User] Updated profile
+      def update_profile(params)
+        resp = post('/account/update_profile.json', params)
+        Croudia::User.new(resp)
+      end
     end
   end
 end
