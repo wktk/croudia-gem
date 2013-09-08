@@ -1,3 +1,4 @@
+require 'croudia/cursor'
 require 'croudia/relationship'
 require 'croudia/user'
 
@@ -48,6 +49,50 @@ module Croudia
         merge_users!(params = {}, args)
         resp = get('/friendships/lookup.json', params)
         objects(Croudia::User, resp)
+      end
+
+      # Friend ids of specified user
+      #
+      # @param user [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Croudia::Cursor] Cursor object that contains friend ids
+      def friend_ids(user=current_user, params={})
+        merge_user!(params, user)
+        resp = get('/friends/ids.json', params)
+        Croudia::Cursor.new(:ids, nil, resp)
+      end
+
+      # Follower ids of specified user
+      #
+      # @param user [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Croudia::Cursor]
+      def follower_ids(user=current_user, params={})
+        merge_user!(params, user)
+        resp = get('/followers/ids.json', params)
+        Croudia::Cursor.new(:ids, nil, resp)
+      end
+
+      # Friends of specified user
+      #
+      # @param user [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Croudia::Cursor]
+      def friends(user=current_user, params={})
+        merge_user!(params, user)
+        resp = get('/friends/list.json', params)
+        Croudia::Cursor.new(:users, Croudia::User, resp)
+      end
+
+      # Followers of specified user
+      #
+      # @param user [String, Integer, Croudia::User]
+      # @param params [Hash]
+      # @return [Croudia::Cursor]
+      def followers(user=current_user, params={})
+        merge_user!(params, user)
+        resp = get('/followers/list.json', params)
+        Croudia::Cursor.new(:users, Croudia::User, resp)
       end
     end
   end

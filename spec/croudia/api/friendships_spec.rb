@@ -247,4 +247,116 @@ describe Croudia::API::Friendships do
       end
     end
   end
+
+  describe '#friend_ids' do
+    before do
+      stub_get('/friends/ids.json').with(query: {
+        screen_name: 'wktk',
+      }).to_return(
+        body: fixture(:ids_with_cursor),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.friend_ids('wktk')
+      expect(a_get('/friends/ids.json').with(query: {
+        screen_name: 'wktk',
+      })).to have_been_made
+    end
+
+    it 'returns Croudia::Cursor' do
+      subject = @client.friend_ids('wktk')
+      expect(subject).to be_a Croudia::Cursor
+    end
+
+    it 'cursor responds to ids' do
+      subject = @client.friend_ids('wktk')
+      expect(subject.respond_to?(:ids)).to be_true
+    end
+  end
+
+  describe '#follower_ids' do
+    before do
+      stub_get('/followers/ids.json').with(query: {
+        screen_name: 'wktk',
+      }).to_return(
+        body: fixture(:ids_with_cursor),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.follower_ids('wktk')
+      expect(a_get('/followers/ids.json').with(query: {
+        screen_name: 'wktk',
+      })).to have_been_made
+    end
+
+    it 'returns Croudia::Cursor' do
+      subject = @client.follower_ids('wktk')
+      expect(subject).to be_a Croudia::Cursor
+    end
+
+    it 'cursor responds to ids' do
+      subject = @client.follower_ids('wktk')
+      expect(subject.respond_to?(:ids)).to be_true
+    end
+  end
+
+  describe '#friends' do
+    before do
+      stub_get('/friends/list.json').with(query: {
+        screen_name: 'wktk',
+      }).to_return(
+        body: fixture(:users_with_cursor),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.friends('wktk')
+      expect(a_get('/friends/list.json').with(query: {
+        screen_name: 'wktk',
+      })).to have_been_made
+    end
+
+    it 'returns Croudia::Cursor' do
+      subject = @client.friends('wktk')
+      expect(subject).to be_a Croudia::Cursor
+    end
+
+    it 'cursor responds to users' do
+      subject = @client.friends('wktk')
+      expect(subject.respond_to?(:users)).to be_true
+    end
+  end
+
+  describe '#followers' do
+    before do
+      stub_get('/followers/list.json').with(query: {
+        screen_name: 'wktk',
+      }).to_return(
+        body: fixture(:users_with_cursor),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.followers('wktk')
+      expect(a_get('/followers/list.json').with(query: {
+        screen_name: 'wktk',
+      })).to have_been_made
+    end
+
+    it 'returns Croudia::Cursor' do
+      subject = @client.followers('wktk')
+      expect(subject).to be_a Croudia::Cursor
+    end
+
+    it 'cursor responds to users' do
+      subject = @client.followers('wktk')
+      expect(subject.respond_to?(:users)).to be_true
+    end
+  end
 end

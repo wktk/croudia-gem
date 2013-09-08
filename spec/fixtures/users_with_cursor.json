@@ -1,0 +1,9 @@
+{
+  "next_cursor": 0,
+  "next_cursor_str": "0",
+  "previous_cursor": 0,
+  "previous_cursor_str": "0",
+  "users": [
+    {"id":7987,"id_str":"7987","name":"wktk","screen_name":"wktk","profile_image_url_https":"https://croudia.com/testimages/download/9423","created_at":"Sun, 29 Jul 2012 19:21:21 +0900","description":"気軽に fav ります。Twitter でも @wktk です。 \r\nhttps://twitter.com/wktk\r\nhttps://github.com/wktk","favorites_count":68,"follow_request_sent":"underdevelopment","followers_count":12,"following":"underdevelopment","friends_count":11,"location":"Japan","statuses_count":26,"protected":false,"url":"http://wktk.jp/"}
+  ]
+}
