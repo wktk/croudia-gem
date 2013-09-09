@@ -27,6 +27,18 @@ module Croudia
         params
       end
 
+      def merge_query!(params, query)
+        case query
+        when Hash
+          params.merge!(query)
+        when String
+          params[:q] = query
+        else
+          raise ArgumentError, 'Search query must be a String'
+        end
+        params
+      end
+
       def merge_user!(params, user, sn_key=:screen_name, user_key=:user_id)
         case user
         when Hash
