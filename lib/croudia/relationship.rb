@@ -1,11 +1,6 @@
 require 'croudia/base'
 
 class Croudia::Relationship < Croudia::Base
-  KEYS = [
-    :souorce,
-    :target,
-  ]
-
   def relationship
     self
   end

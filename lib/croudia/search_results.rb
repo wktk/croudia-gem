@@ -4,12 +4,10 @@ require 'croudia/status'
 
 module Croudia
   class SearchResults < Croudia::Base
-    KEYS = [
+    attr_reader(
       :search_metadata,
-      :statuses,
-    ]
-
-    attr_reader(*KEYS)
+      :statuses
+    )
 
     def initialize(attrs)
       statuses = attrs.delete('statuses')

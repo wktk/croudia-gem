@@ -5,7 +5,7 @@ module Croudia
   class SecretMail < Croudia::Identity
     include Croudia::Creatable
 
-    KEYS = [
+    attr_reader(
       :id_str,
       :recipient,
       :recipient_id,
@@ -13,10 +13,8 @@ module Croudia
       :sender,
       :sender_id,
       :sender_screen_name,
-      :text,
-    ]
-
-    attr_reader(*KEYS)
+      :text
+    )
 
     def initialize(attrs)
       recipient = attrs.delete('recipient')

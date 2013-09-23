@@ -2,7 +2,7 @@ require 'croudia/base'
 
 module Croudia
   class SearchMetadata < Croudia::Base
-    KEYS = [
+    attr_reader(
       :completed_in,
       :count,
       :max_id,
@@ -11,9 +11,7 @@ module Croudia
       :query,
       :refresh_url,
       :since_id,
-      :since_ids_str,
-    ]
-
-    attr_reader(*KEYS)
+      :since_ids_str
+    )
   end
 end

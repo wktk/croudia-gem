@@ -2,14 +2,12 @@ require 'croudia/base'
 
 module Croudia
   class Cursor < Croudia::Base
-    KEYS = [
+    attr_reader(
       :next_cursor,
       :next_cursor_str,
       :previous_cursor,
-      :previous_cursor_str,
-    ]
-
-    attr_reader(*KEYS)
+      :previous_cursor_str
+    )
 
     def initialize(key, klass, attrs)
       if klass.is_a?(Class)

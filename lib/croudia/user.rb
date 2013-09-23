@@ -5,8 +5,7 @@ module Croudia
   class User < Croudia::Identity
     include Croudia::Creatable
 
-    KEYS = [
-      :id_str,
+    attr_reader(
       :blocking,
       :connections,
       :description,
@@ -16,15 +15,14 @@ module Croudia
       :following,
       :followers_count,
       :friends_count,
+      :id_str,
       :location,
       :name,
       :profile_image_url_https,
       :protected,
       :screen_name,
       :statuses_count,
-      :url,
-    ]
-
-    attr_reader(*KEYS)
+      :url
+    )
   end
 end

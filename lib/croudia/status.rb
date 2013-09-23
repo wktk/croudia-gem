@@ -8,11 +8,11 @@ module Croudia
   class Status < Croudia::Identity
     include Croudia::Creatable
 
-    KEYS = [
-      :id_str,
+    attr_reader(
       :entities,
       :favorited,
       :favorited_count,
+      :id_str,
       :in_reply_to_screen_name,
       :in_reply_to_status_id_str,
       :in_reply_to_status_id,
@@ -24,10 +24,8 @@ module Croudia
       :reply_status,
       :source,
       :text,
-      :user,
-    ]
-
-    attr_reader(*KEYS)
+      :user
+    )
 
     def initialize(attrs={})
       entities = attrs.delete('entities')

@@ -2,19 +2,14 @@ require 'croudia/base'
 
 module Croudia
   class AccessToken < Croudia::Base
-    KEYS = [
+    attr_reader(
       :access_token,
       :expires_in,
       :refresh_token,
-      :token_type,
-    ]
-
-    attr_reader(*KEYS)
+      :token_type
+    )
 
     alias :token :access_token
-
-    def to_s
-      access_token
-    end
+    alias :to_s :access_token
   end
 end

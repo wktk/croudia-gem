@@ -2,13 +2,11 @@ require 'croudia/base'
 
 module Croudia
   class Source < Croudia::Base
-
-    KEYS = [
+    attr_reader(
       :name,
-      :url,
-    ]
+      :url
+    )
 
-    attr_reader(*KEYS)
     alias to_s name
 
     def ==(other)

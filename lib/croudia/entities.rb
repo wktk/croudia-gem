@@ -3,10 +3,9 @@ require 'croudia/entity/media'
 
 module Croudia
   class Entities < Croudia::Base
-    KEYS = [
-      :media,
-    ]
-    attr_reader(*KEYS)
+    attr_reader(
+      :media
+    )
 
     def initialize(attrs)
       media = attrs.delete('media')
