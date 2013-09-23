@@ -2,3 +2,11 @@ language: ruby
 rvm:
   - 2.0.0
   - 1.9.3
+deploy:
+  provider: rubygems
+  api_key:
+    secure: UZBvpa1if3PwDR7xRI1Hrhzz9pu+jUcbsHuDrMAm8DYdNsiBfja6ZxSDFvF9S+wOtkQFLGzUJS8OXIL/iKar2aCTNZxqrTThehtOqhyGeBog/3omYUp5Hw3hBL3XFbls4cfBQZTRTD/LJHhRdi/bo3tI8aqqU5ulAx4F893KjNs=
+  gem: croudia
+  on:
+    tags: true
+    repo: wktk/croudia-gem
