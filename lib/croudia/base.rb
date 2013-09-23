@@ -63,5 +63,9 @@ module Croudia
     end
     alias to_h attrs
     alias to_hash attrs
+
+    def inspect
+      "#<#{self.class}:0x#{__id__.abs.to_s(16)} #{@attrs.inspect}>"
+    end
   end
 end
