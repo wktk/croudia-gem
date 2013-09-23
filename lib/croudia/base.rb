@@ -8,6 +8,36 @@ module Croudia
           end
         end
       end
+
+      # @param attrs [Hash] { name: Class, name: Class, ... }
+      def attr_object_reader(attrs)
+        attrs.each_pair do |path, klass|
+          path = [path] unless path.is_a?(Array)
+          attr = path.join('_').to_sym
+
+          define_method(path.last) do
+            object = instance_variable_get("@#{attr}")
+
+            unless object
+              object_attrs = @attrs
+              path.each { |p| object_attrs = object_attrs[p.to_s] }
+
+              object = if object_attrs.nil?
+                nil
+              elsif klass.is_a?(Array)
+                klass = klass.shift
+                object_attrs.map { |o| klass.new(o) }
+              else
+                klass.new(object_attrs)
+              end
+
+              instance_variable_set("@#{attr}", object)
+            end
+
+            object
+          end
+        end
+      end
     end
 
     # Initialize a new object

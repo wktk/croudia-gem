@@ -13,6 +13,5 @@ module Croudia
       super || (other.is_a?(Croudia::Source) &&
         name == other.name && url == other.url)
     end
-
   end
 end

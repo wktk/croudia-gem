@@ -15,7 +15,6 @@ module Croudia
       :following,
       :followers_count,
       :friends_count,
-      :id_str,
       :location,
       :name,
       :profile_image_url_https,

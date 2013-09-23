@@ -2,6 +2,11 @@ require 'croudia/base'
 
 module Croudia
   class Identity < Croudia::Base
+    attr_reader(
+      :id,
+      :id_str
+    )
+
     def initialize(*)
       super
       raise ArgumentError, 'argument must have an "id" key' unless id
@@ -12,11 +17,6 @@ module Croudia
     # @return [Boolean]
     def ==(other)
       super || self.class == other.class && id == other.id
-    end
-
-    # @return [Integer]
-    def id
-      @attrs['id'] || @attrs[:id]
     end
   end
 end

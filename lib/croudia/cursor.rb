@@ -11,9 +11,10 @@ module Croudia
 
     def initialize(key, klass, attrs)
       if klass.is_a?(Class)
-        attrs[key.to_s].map! { |element| klass.new(element) }
+        singleton_class.attr_object_reader(key => Array(klass))
+      else
+        singleton_class.attr_reader(key)
       end
-      singleton_class.attr_reader(key)
       super(attrs)
     end
 
