@@ -5,18 +5,10 @@ module Croudia
     module Favorites
       # List of favorited statuses
       #
-      # @param user [String]
       # @param params [Hash]
       # @return [Array<Croudia::Status>]
-      def favorites(user={}, params={})
-        resp = case user
-        when Hash
-          params.merge!(user)
-          get('/favorites.json', params)
-        else
-          get("/favorites/#{user}.json", params)
-        end
-
+      def favorites(params={})
+        resp = get('/favorites.json', params)
         objects(Croudia::Status, resp)
       end
 

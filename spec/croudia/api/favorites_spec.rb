@@ -6,38 +6,22 @@ describe Croudia::API::Favorites do
   end
 
   describe '#favorites' do
-    context 'when user is not specified' do
-      before do
-        stub_get('/favorites.json').to_return(
-          body: fixture(:timeline),
-          headers: { content_type: 'application/json; charset=utf-8' }
-        )
-      end
-
-      it 'requests the correct resource' do
-        @client.favorites
-        expect(a_get('/favorites.json')).to have_been_made
-      end
-
-      it 'returns Array of Croudia::Status' do
-        subject = @client.favorites
-        expect(subject).to be_an Array
-        subject.each { |s| expect(s).to be_a Croudia::Status }
-      end
+    before do
+      stub_get('/favorites.json').to_return(
+        body: fixture(:timeline),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
     end
 
-    context 'when user is specified' do
-      before do
-        stub_get('/favorites/wktk.json').to_return(
-          body: fixture(:timeline),
-          headers: { content_type: 'application/json; charset=utf-8' }
-        )
-      end
+    it 'requests the correct resource' do
+      @client.favorites
+      expect(a_get('/favorites.json')).to have_been_made
+    end
 
-      it 'requests the correct resource' do
-        @client.favorites('wktk')
-        expect(a_get('/favorites/wktk.json')).to have_been_made
-      end
+    it 'returns Array of Croudia::Status' do
+      subject = @client.favorites
+      expect(subject).to be_an Array
+      subject.each { |s| expect(s).to be_a Croudia::Status }
     end
   end
 
