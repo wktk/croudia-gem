@@ -5,7 +5,11 @@ module Croudia
     module SecretMails
       # Get incoming secret mails
       #
-      # @param params [Hash]
+      # @see https://developer.croudia.com/docs/21_secret_mails
+      # @param [Hash] params Additional query parameters
+      # @option params [String, Integer] :count Number of secret mails in the response
+      # @option params [String, Integer] :max_id Paging parameter
+      # @option params [String, Integer] :since_id Paging parameter
       # @return [Array<Croudia::SecretMails>]
       def secret_mails(params={})
         resp = get('/secret_mails.json', params)
@@ -14,7 +18,11 @@ module Croudia
 
       # Get outgoing secret mails
       #
-      # @param params [Hash]
+      # @see https://developer.croudia.com/docs/22_secret_mails_sent
+      # @param [Hash] params Additional query parameters
+      # @option params [String, Integer] :count Number of secret mails in the response
+      # @option params [String, Integer] :max_id Paging parameter
+      # @option params [String, Integer] :since_id Paging parameter
       # @return [Array<Croudia::SecretMail>]
       def secret_mails_sent(params={})
         resp = get('/secret_mails/sent.json', params)
@@ -23,9 +31,17 @@ module Croudia
 
       # Send a new secret mail
       #
-      # @param text [String] Message body
-      # @param to_user [String, Integer, Croudia::User] Recipient user
-      # @param params [Hash]
+      # @see https://developer.croudia.com/docs/23_secret_mails_new
+      # @overload send_secret_mail(text, to_user, params={})
+      #   @param [String] text Message body
+      #   @param [String, Integer, Croudia::User] to_user Recipient user
+      #   @param [Hash] params Additional query parameters
+      # @overload send_secret_mail(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [String] :screen_name Screen name of the recipient
+      #   @option params [String] :text Message body
+      #   @option params [String, Integer] :user_id ID of the recipient
+      # @return [Croudia::SecretMail] Sent message
       def send_secret_mail(text, to_user={}, params={})
         merge_text!(params, text, :text)
         merge_user!(params, to_user)
@@ -36,9 +52,10 @@ module Croudia
 
       # Destroy a secret mail
       #
-      # @param id [Integer, String, Croudia::SecretMail]
-      # @param params [Hash]
-      # @return [Croudia::SecretMail]
+      # @see https://developer.croudia.com/docs/24_secret_mails_destroy
+      # @param [String, Integer, Croudia::SecretMail] id ID of the secret mail to delete
+      # @param [Hash] params Additional query params
+      # @return [Croudia::SecretMail] Deleted secret mail
       def destroy_secret_mail(id, params={})
         resp = post("/secret_mails/destroy/#{get_id(id)}.json", params)
         Croudia::SecretMail.new(resp)
@@ -46,8 +63,9 @@ module Croudia
 
       # Get a secret mail
       #
-      # @param id [Integer, String, Croudia::SecretMail]
-      # @param params [Hash]
+      # @see https://developer.croudia.com/docs/25_secret_mails_show
+      # @param [String, Integer, Croudia::SecretMail] id ID of the secret mail to get
+      # @param [Hash] params Additional query parameters
       # @return [Croudia::SecretMail]
       def show_secret_mail(id, params={})
         resp = get("/secret_mails/show/#{get_id(id)}.json", params)

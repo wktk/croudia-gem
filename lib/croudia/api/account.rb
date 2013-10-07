@@ -5,7 +5,8 @@ module Croudia
     module Account
       # Retrieve the Authenticated User
       #
-      # @params params [Hash] Additional params
+      # @see https://developer.croudia.com/docs/35_account_verify_credentials
+      # @param [Hash] params Additional query parameterss
       # @return [Croudia::User] Current user's object
       def verify_credentials(params={})
         resp = get('/account/verify_credentials.json', params)
@@ -15,9 +16,14 @@ module Croudia
 
       # Update profile image
       #
-      # @param image [File] New profile image
-      # @param params [Hash]
-      # @return [Croudia::User] Authenticated user object with new image
+      # @see https://developer.croudia.com/docs/36_account_update_profile_image
+      # @overload update_profile_image(image, params={})
+      #   @param [File] image New profile image
+      #   @param [Hash] params Addtional query parameters
+      # @overload update_profile_image(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [File] :image New profile image
+      # @return [Croudia::User] Current user's object updated
       def update_profile_image(image, params={})
         merge_file!(params, image, :image)
         resp = post('/account/update_profile_image.json', params)
@@ -26,7 +32,12 @@ module Croudia
 
       # Update profile
       #
-      # @param params [Hash]
+      # @see https://developer.croudia.com/docs/37_account_update_profile
+      # @param [Hash] params Additional query parameters
+      # @option params [String] :description Bio of the user
+      # @option params [String] :location Geo location
+      # @option params [String] :name Name of the user
+      # @option params [String] :url URL
       # @return [Croudia::User] Updated profile
       def update_profile(params)
         resp = post('/account/update_profile.json', params)

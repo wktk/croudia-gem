@@ -13,7 +13,7 @@ module Croudia
       @attrs['id_str'] ||= id.to_s
     end
 
-    # @param other [Croudia::Identity]
+    # @param [Croudia::Identity] other
     # @return [Boolean]
     def ==(other)
       super || self.class == other.class && id == other.id

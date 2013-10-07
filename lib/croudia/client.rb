@@ -29,8 +29,7 @@ module Croudia
 
     # Initialize a new Client object
     #
-    # @param options [Hash]
-    # @return [Croudia::Client]
+    # @param [Hash] options
     def initialize(options={})
       Croudia::Configurable.keys.each do |key|
         instance_variable_set(:"@#{key}", options[key] || Croudia.instance_variable_get(:"@#{key}"))
@@ -59,6 +58,7 @@ module Croudia
 
   private
 
+    # @return [String] Response body
     def request(method, path, params={})
       connection.send(method.to_sym, path, params) do |request|
         request.headers[:authorization] = "Bearer #{@access_token}" if @access_token

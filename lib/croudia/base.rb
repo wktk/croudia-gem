@@ -9,7 +9,7 @@ module Croudia
         end
       end
 
-      # @param attrs [Hash] { name: Class, name: Class, ... }
+      # @param [Hash] attrs { name: Class, name: Class, ... }
       def attr_object_reader(attrs)
         attrs.each_pair do |path, klass|
           path = [path] unless path.is_a?(Array)
@@ -42,21 +42,21 @@ module Croudia
 
     # Initialize a new object
     #
-    # @param attrs [Hash]
+    # @param [Hash] attrs
     # @return [Croudia::Base]
     def initialize(attrs = {})
-      @attrs = attrs || {}
+      @attrs = attrs
     end
 
     # Fetch an attribute
     #
-    # @param name [String, Symobol]
+    # @param [String, Symobol] name
     def [](name)
       __send__(name.to_sym)
     rescue NoMethodError
       nil
     end
-    
+
     # @return [Hash]
     def attrs
       @attrs
