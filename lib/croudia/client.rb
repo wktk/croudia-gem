@@ -9,7 +9,6 @@ require 'croudia/api/timelines'
 require 'croudia/api/users'
 require 'croudia/api/utils'
 require 'croudia/configurable'
-require 'croudia/ext/openssl'
 require 'croudia/version'
 require 'faraday'
 
