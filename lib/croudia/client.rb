@@ -6,6 +6,7 @@ require 'croudia/api/search'
 require 'croudia/api/secret_mails'
 require 'croudia/api/statuses'
 require 'croudia/api/timelines'
+require 'croudia/api/trends'
 require 'croudia/api/users'
 require 'croudia/api/utils'
 require 'croudia/configurable'
@@ -22,6 +23,7 @@ module Croudia
     include Croudia::API::SecretMails
     include Croudia::API::Statuses
     include Croudia::API::Timelines
+    include Croudia::API::Trends
     include Croudia::API::Users
     include Croudia::API::Utils
     include Croudia::Configurable
