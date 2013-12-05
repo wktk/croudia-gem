@@ -11,7 +11,7 @@ Croudia is a registered trademark of Croudia Inc. in Japan.
 
 Add this line to your application's Gemfile:
 
-    gem 'croudia'
+    gem "croudia", "~> 1.0"
 
 And then execute:
 
@@ -65,6 +65,9 @@ home_timeline = croudia.home_timeline
 # Post a status
 posted_status = croudia.update("Hello!")
 ```
+
+The full documentation of `Croudia::Client` is available at:
+http://rdoc.info/gems/croudia/Croudia/Client
 
 ## Contributing
 
