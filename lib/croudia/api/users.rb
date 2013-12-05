@@ -29,7 +29,7 @@ module Croudia
       # @overload users(params={})
       #   @param [Hash] params Query parameters
       #   @option params [String] :screen_name Comma-separated screen names
-      #   @option params [String[ :user_id Comma-separated user IDs
+      #   @option params [String] :user_id Comma-separated user IDs
       # @return [Array<Croudia::User>]
       def users(*args)
         merge_users!(params = {}, args)

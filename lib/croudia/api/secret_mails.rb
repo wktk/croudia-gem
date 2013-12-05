@@ -10,7 +10,7 @@ module Croudia
       # @option params [String, Integer] :count Number of secret mails in the response
       # @option params [String, Integer] :max_id Paging parameter
       # @option params [String, Integer] :since_id Paging parameter
-      # @return [Array<Croudia::SecretMails>]
+      # @return [Array<Croudia::SecretMail>]
       def secret_mails(params={})
         resp = get('/secret_mails.json', params)
         objects(Croudia::SecretMail, resp)

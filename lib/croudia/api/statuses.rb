@@ -31,10 +31,10 @@ module Croudia
       # Update status with media
       #
       # @see https://developer.croudia.com/docs/14_statuses_update_with_media
+      # @note Currently only PNG, JPG, and GIF are supported
       # @overload update_with_media(status, media, params={})
       #   @param [String] status Status text
       #   @param [File, #to_io] media Image to upload with
-      #     @note Currently only PNG, JPG, and GIF are supported
       #   @option params [String, Integer] :in_reply_to_status_id
       #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
@@ -45,7 +45,6 @@ module Croudia
       #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
       #   @option params [File, #to_io] media Image to upload with
-      #     @note Currently only PNG, JPG, and GIF are supported
       #   @option params [String] :status Status text
       #   @option params [String] :trim_user Set true to return compact user objects
       # @return [Croudia::Status]
