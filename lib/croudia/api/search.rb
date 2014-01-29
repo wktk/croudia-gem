@@ -53,35 +53,35 @@ module Croudia
         resp = get('/users/search.json', params)
         objects(Croudia::User, resp)
       end
+      alias search_users search_user
 
       # Search for users with profile
       #
       # @see https://developer.croudia.com/docs/83_profile_search
-      # @overload search_user(q, params={})
+      # @overload search_user_by_profile(q, params={})
       #   @param [String] q Search query
       #   @param [Hash] params Additional query parameters
       #   @option params [String, Integer] :count Number of users in the response
       #   @option params [String] :include_entities Set false to exclude entities
-      #   @option params [String, Integer] :max_id Paging parameter
-      #   @option params [String, Integer] :since_id Paging parameter
       #   @option params [String] :trim_user Set true to return compact user objects
-      # @overload search_user(params={})
+      # @overload search_user_by_profile(params={})
       #   @param [Hash] params Query parameters
       #   @option params [String] :q Search query
       #   @option params [String, Integer] :count Number of users in the response
       #   @option params [String, Integer] :page Page to fetch, up to 1000
       #   @option params [String] :trim_user Set true to return compact user objects
       # @return [Array<Croudia::User>] Users found
-      def search_user(q, params={})
+      def search_user_by_profile(q, params={})
         merge_query!(params, q)
         resp = get('/profile/search.json', params)
         objects(Croudia::User, resp)
       end
+      alias search_users_by_profile search_user_by_profile
       
-      # Search for statuses have favorited
+      # Search for statuses the authenticated user has favorited
       #
       # @see https://developer.croudia.com/docs/84_search_favorites
-      # @overload search(q, params={})
+      # @overload search_favorites(q, params={})
       #   @param [String] q Search query
       #   @param [Hash] params Additional query parameters
       #   @option params [String, Integer] :count Number of statuses in the response
@@ -89,7 +89,7 @@ module Croudia
       #   @option params [String, Integer] :max_id Paging parameter
       #   @option params [String, Integer] :since_id Paging parameter
       #   @option params [String] :trim_user Set true to return compact user objects
-      # @overload search(params={})
+      # @overload search_favorites(params={})
       #   @param [Hash] params Query parameters
       #   @option params [String] :q Search query
       #   @option params [String, Integer] :count Number of statuses in the response
@@ -98,12 +98,12 @@ module Croudia
       #   @option params [String, Integer] :since_id Paging parameter
       #   @option params [String] :trim_user Set true to return compact user objects
       # @return [Croudia::SearchResults]
-      def search(q, params={})
+      def search_favorites(q, params={})
         merge_query!(params, q)
         resp = get('/search/favorites.json', params)
         Croudia::SearchResults.new(resp)
       end
-      alias search_users search_user
+
     end
   end
 end
