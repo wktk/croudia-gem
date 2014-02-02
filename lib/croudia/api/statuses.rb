@@ -35,6 +35,7 @@ module Croudia
       # @overload update_with_media(status, media, params={})
       #   @param [String] status Status text
       #   @param [File, #to_io] media Image to upload with
+      #   @param [Hash] params Additional query parameters
       #   @option params [String, Integer] :in_reply_to_status_id
       #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
@@ -44,7 +45,7 @@ module Croudia
       #   @option params [String, Integer] :in_reply_to_status_id
       #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
-      #   @option params [File, #to_io] media Image to upload with
+      #   @option params [File, #to_io] :media Image to upload with
       #   @option params [String] :status Status text
       #   @option params [String] :trim_user Set true to return compact user objects
       # @return [Croudia::Status]
