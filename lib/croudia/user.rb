@@ -8,6 +8,7 @@ module Croudia
     attr_reader(
       :blocking,
       :connections,
+      :cover_image_url_https,
       :description,
       :favorites_count,
       :follow_request_sent,
