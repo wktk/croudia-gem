@@ -30,6 +30,22 @@ module Croudia
         Croudia::User.new(resp)
       end
 
+      # Update cover image
+      #
+      # @see https://developer.croudia.com/docs/39_account_update_cover_image
+      # @overload update_cover_image(image, params={})
+      #   @param [File] image New cover image
+      #   @param [Hash] params Addtional query parameters
+      # @overload update_cover_image(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [File] :image New cover image
+      # @return [Croudia::User] Current user's object updated
+      def update_cover_image(image, params={})
+        merge_file!(params, image, :image)
+        resp = post('/account/update_cover_image.json', params)
+        Croudia::User.new(resp)
+      end
+
       # Update profile
       #
       # @see https://developer.croudia.com/docs/37_account_update_profile

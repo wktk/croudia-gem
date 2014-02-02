@@ -42,6 +42,25 @@ describe Croudia::API::Account do
     end
   end
 
+  describe '#update_cover_image' do
+    before do
+      stub_post('/account/update_cover_image.json').to_return(
+        body: fixture(:user),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.update_cover_image(fixture('image.jpg'))
+      expect(a_post('/account/update_cover_image.json')).to have_been_made
+    end
+
+    it 'returns a Croudia::User' do
+      subject = @client.update_cover_image(fixture('image.jpg'))
+      expect(subject).to be_a Croudia::User
+    end
+  end
+
   describe '#update_profile' do
     before do
       stub_post('/account/update_profile.json').to_return(
