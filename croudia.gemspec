@@ -3,7 +3,7 @@ require File.expand_path('../lib/croudia/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['wktk']
-  gem.email         = ['mail@wktk.jp']
+  gem.email         = ['wktk30@gmail.com']
   gem.description   = 'Ruby Wrapper for the Croudia API'
   gem.summary       = 'Croudia API'
   gem.homepage      = 'https://github.com/wktk/croudia-gem'
