@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/wktk/croudia-gem.png)](https://travis-ci.org/wktk/croudia-gem)
 
-A Ruby Wapper for the [Croudia](https://croudia.com) API
+Ruby wrapper for the [Croudia](https://croudia.com) API
 
 This software is not affiliated with [Croudia Inc](http://croudia.co.jp/).
 Croudia is a registered trademark of Croudia Inc. in Japan.
