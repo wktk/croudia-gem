@@ -91,6 +91,17 @@ module Croudia
         params
       end
 
+      def merge_id!(params, id, key=:id)
+        case id
+        when Hash
+          params.merge!(id)
+        else
+          params[key] = get_id(id)
+        end
+
+        params
+      end
+
       def objects(klass, array)
         array.map { |hash| klass.new(hash) }
       end

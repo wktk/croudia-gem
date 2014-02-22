@@ -10,13 +10,11 @@ module Croudia
       #   @param [String] status Status text
       #   @param [Hash] params Additional query parameters
       #   @option params [String, Integer] :in_reply_to_status_id
-      #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
       #   @option params [String] :trim_user Set true to return compact user objects
       # @overload update(params={})
       #   @param [Hash] params Query parameters
       #   @option params [String, Integer] :in_reply_to_status_id
-      #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
       #   @option params [String] :status Status text
       #   @option params [String] :trim_user Set true to return compact user objects
@@ -37,13 +35,11 @@ module Croudia
       #   @param [File, #to_io] media Image to upload with
       #   @param [Hash] params Additional query parameters
       #   @option params [String, Integer] :in_reply_to_status_id
-      #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
       #   @option params [String] :trim_user Set true to return compact user objects
       # @overload update_with_media(params={})
       #   @param [Hash] params Query parameters
       #   @option params [String, Integer] :in_reply_to_status_id
-      #   @option params [String] :in_reply_with_quote Set true if quote
       #   @option params [String] :include_entities Set false to exclude entities
       #   @option params [File, #to_io] :media Image to upload with
       #   @option params [String] :status Status text
@@ -97,6 +93,57 @@ module Croudia
         resp = post("/statuses/spread/#{status_id}.json", params)
         Croudia::Status.new(resp)
       end
+
+      # Share (formerly reply with quote) a status
+      #
+      # @see https://developer.croudia.com/docs/110_statuses_share
+      # @overload share(id, status, params={})
+      #   @param [String, Integer, Croudia::Status] id Post to share
+      #   @param [String] status Status text
+      #   @param [Hash] params Additional query parameters
+      #   @option params [String] :include_entities Set false to exclude entities
+      #   @option params [String] :trim_user Set true to return compact user objects
+      # @overload share(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [String, Integer, Croudia::Status] :id Post to share
+      #   @option params [String] :status Status text
+      #   @option params [String] :include_entities Set false to exclude entities
+      #   @option params [String] :trim_user Set true to return compact user objects
+      # @return [Croudia::Status] Posted status
+      def share(id, status={}, params={})
+        merge_id!(params, id)
+        merge_text!(params, status)
+        resp = post('/statuses/share.json', params)
+        Croudia::Status.new(resp)
+      end
+
+      # Share (formerly reply with quote) a status with media
+      #
+      # @see https://developer.croudia.com/docs/111_statuses_share_with_media
+      # @note Currently only PNG, JPG, and GIF are supported
+      # @overload share_with_media(id, status, media, params={})
+      #   @param [String, Integer, Croudia::Status] id Post to share
+      #   @param [String] status Status text
+      #   @param [File, #to_io] media Image to upload with
+      #   @param [Hash] params Additional query parameters
+      #   @option params [String] :include_entities Set false to exclude entities
+      #   @option params [String] :trim_user Set true to return compact user objects
+      # @overload share_with_media(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [String, Integer, Croudia::Status] :id Post to share
+      #   @option params [String] :include_entities Set false to exclude entities
+      #   @option params [File, #to_io] :media Image to upload with
+      #   @option params [String] :status Status text
+      #   @option params [String] :trim_user Set true to return compact user objects
+      # @return [Croudia::Status]
+      def share_with_media(id, status={}, media={}, params={})
+        merge_id!(params, id)
+        merge_text!(params, status)
+        merge_file!(params, media, :media)
+        resp = post('/statuses/share_with_media.json', params)
+        Croudia::Status.new(resp)
+      end
+
     end
   end
 end
