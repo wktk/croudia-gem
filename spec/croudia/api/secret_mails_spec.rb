@@ -109,6 +109,25 @@ describe Croudia::API::SecretMails do
     end
   end
 
+  describe '#send_secret_mail_with_media' do
+    before do
+      stub_post('/secret_mails/new_with_media.json').to_return(
+        body: fixture(:secret_mail),
+        headers: { content_type: 'application/json; charset=utf-8' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.send_secret_mail_with_media('hi', 1234, fixture('image.jpg'))
+      expect(a_post('/secret_mails/new_with_media.json')).to have_been_made
+    end
+
+    it 'returns Croudia::SecretMail' do
+      subject = @client.send_secret_mail_with_media('hi', 1234, fixture('image.jpg'))
+      expect(subject).to be_a Croudia::SecretMail
+    end
+  end
+
   describe '#destroy_secret_mail' do
     before do
       stub_post('/secret_mails/destroy/1234.json').to_return(
@@ -151,4 +170,23 @@ describe Croudia::API::SecretMails do
       expect(subject).to be_a Croudia::SecretMail
     end
   end
+
+  describe '#secret_photo' do
+    before do
+      stub_get('/secret_mails/get_secret_photo/123').to_return(
+        body: fixture('image.jpg'),
+        headers: { content_type: 'image/jpg' }
+      )
+    end
+
+    it 'requests the correct resource' do
+      @client.secret_photo(123)
+      expect(a_get('/secret_mails/get_secret_photo/123')).to have_been_made
+    end
+
+    it 'returns a photo in String' do
+      expect(@client.secret_photo(123)).to eq fixture('image.jpg').read
+    end
+  end
+
 end

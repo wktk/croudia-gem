@@ -50,6 +50,30 @@ module Croudia
         Croudia::SecretMail.new(resp)
       end
 
+      # Send a new secret mail with media
+      #
+      # @see https://developer.croudia.com/docs/26_secret_mails_new_with_media
+      # @overload send_secret_mail_with_media(text, to_user, media, params={})
+      #   @param [String] text Message body
+      #   @param [String, Integer, Croudia::User] to_user Recipient user
+      #   @param [File, #to_io] media Image to upload with
+      #   @param [Hash] params Additional query parameters
+      # @overload send_secret_mail_with_media(params={})
+      #   @param [Hash] params Query parameters
+      #   @option params [File, #to_io] :media Image to upload with
+      #   @option params [String] :screen_name Screen name of the recipient
+      #   @option params [String] :text Message body
+      #   @option params [String, Integer] :user_id ID of the recipient
+      # @return [Croudia::SecretMail] Sent message
+      def send_secret_mail_with_media(text, to_user={}, media={}, params={})
+        merge_text!(params, text, :text)
+        merge_user!(params, to_user)
+        merge_file!(params, media, :media)
+
+        resp = post('/secret_mails/new_with_media.json')
+        Croudia::SecretMail.new(resp)
+      end
+
       # Destroy a secret mail
       #
       # @see https://developer.croudia.com/docs/24_secret_mails_destroy
@@ -71,6 +95,16 @@ module Croudia
         resp = get("/secret_mails/show/#{get_id(id)}.json", params)
         Croudia::SecretMail.new(resp)
       end
+
+      # Get an image attached to a secret mail
+      #
+      # @see https://developer.croudia.com/docs/27_secret_mails_get_secret_photo
+      # @param [String, Integer] id Image ID
+      # @return [String] Raw image
+      def secret_photo(id)
+        get("/secret_mails/get_secret_photo/#{id}")
+      end
+
     end
   end
 end
