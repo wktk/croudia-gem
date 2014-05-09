@@ -14,6 +14,7 @@ module Croudia
     )
 
     attr_object_reader(
+      entities: Croudia::Entities,
       recipient: Croudia::User,
       sender: Croudia::User
     )
