@@ -99,7 +99,7 @@ describe Croudia::API::Statuses do
     before do
       stub_get('/statuses/show/1234.json').to_return(
         body: fixture(:status),
-        header: { content_type: 'application/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 
@@ -117,7 +117,7 @@ describe Croudia::API::Statuses do
     before do
       stub_post('/statuses/spread/1234.json').to_return(
         body: fixture(:status),
-        header: { content_type: 'application/json: charset=utf-8' }
+        headers: { content_type: 'application/json: charset=utf-8' }
       )
     end
 

@@ -5,7 +5,7 @@ describe Croudia do
     before do
       stub_get('/statuses/public_timeline.json').to_return(
         body: fixture('timeline'),
-        headers: { content_type: 'application/json; charset_utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 

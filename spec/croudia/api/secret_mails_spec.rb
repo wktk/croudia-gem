@@ -9,7 +9,7 @@ describe Croudia::API::SecretMails do
     before do
       stub_get('/secret_mails.json').to_return(
         body: fixture(:secret_mails),
-        header: { content_type: 'application/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 
@@ -29,7 +29,7 @@ describe Croudia::API::SecretMails do
     before do
       stub_get('/secret_mails/sent.json').to_return(
         body: fixture(:secret_mails),
-        header: { content_type: 'application/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 
@@ -113,7 +113,7 @@ describe Croudia::API::SecretMails do
     before do
       stub_post('/secret_mails/destroy/1234.json').to_return(
         body: fixture(:secret_mail),
-        headers: { content_type: 'application/json; charset-utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 
@@ -137,7 +137,7 @@ describe Croudia::API::SecretMails do
     before do
       stub_get('/secret_mails/show/1234.json').to_return(
         body: fixture(:secret_mail),
-        headers: { content_type: 'appplication/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 

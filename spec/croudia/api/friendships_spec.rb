@@ -94,7 +94,7 @@ describe Croudia::API::Friendships do
         }
       ).to_return(
         body: fixture(:friendship),
-        headers: { content_type: 'appplication/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 

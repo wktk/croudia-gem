@@ -9,7 +9,7 @@ describe Croudia::API::Account do
     before do
       stub_get('/account/verify_credentials.json').to_return(
         body: fixture(:user),
-        header: { content_type: 'application/json; charset=utf-8' }
+        headers: { content_type: 'application/json; charset=utf-8' }
       )
     end
 
