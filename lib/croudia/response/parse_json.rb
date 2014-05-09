@@ -5,6 +5,8 @@ module Croudia
   module Response
     class ParseJSON < Faraday::Response::Middleware
       def on_complete(env)
+        return unless env[:response_headers]['content-type'].to_s.include?('json')
+
         case env[:body]
         when /\A\s*\z/, nil
           env[:body] = nil
@@ -12,8 +14,7 @@ module Croudia
           env[:body] = JSON.parse(env[:body])
         end
       rescue JSON::ParserError => e
-        raise e if env[:status] == 200
-        env[:body] = nil
+        env[:status] == 200 ? raise(e) : env[:body] = nil
       end
     end
   end
