@@ -1,3 +1,6 @@
+**Notice: Croudia has shut down since Dec 31, 2017.
+This rubygem will no longer work as it depends on Croudia's API.**
+
 # Croudia
 
 [![Build Status](https://travis-ci.org/wktk/croudia-gem.png)](https://travis-ci.org/wktk/croudia-gem)
